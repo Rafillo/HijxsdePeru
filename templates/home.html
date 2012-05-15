@@ -1,85 +1,37 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 {% block content %}
-<table width="909" border="0" cellspacing="0">
-  <tr>
-    <td>{% if row %}
-<div class="blogs">
-    <div class="blog">
+{% if row %}
           <h2>{{ row.pagina }}</h2>
             {% if row.imagen %}
                 {% thumbnail row.imagen "190x190" crop="center" as im %}
-                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                <figure><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></figure>
                 {% endthumbnail %}
             {% endif %}
-                <div class="blogtexto"><p>{{ row.descripcion|linebreaks }}</p>
-                <div class="limpiar"></div>
-                </div><!--blogtexto--><div class="limpiar"></div>
-      </div><!--blog-->    </div><!--blogs--> {% else %}
-<div class="blogs">
-    <div class="blog">
-      {% for row in paginas %}
+            <p>{{ row.descripcion|linebreaks }}</p>
+{% else %}
+    {% for row in paginas %}
         <h2>{{ row.pagina }}</h2>
               {% if row.foto %}
                   {% thumbnail row.foto "190x130" crop="center" as im %}
-                  <img align="left" alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                  <figure><img alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></figure>
                   {% endthumbnail %}
               {% endif %}                 
-        <div class="blogtexto"> <p >{{ row.descripcion|truncatewords_html:50 }}</p>
-        <a href="/pagina/{{ row.idpagina }}" target="_blank" class="mas">ver m&aacute;s</a></p>
-        <div class="limpiar"></div>
-         </div><!--blogtexto-->
-        <div class="limpiar"></div>
-    </div><!--blog-->{% endfor %}
-    <div class="limpiar"></div>
-    </div><!--blogs-->
-<!--blogs de header-->
-       {% endif %}    
-        <div class="blogs">
-        {% for row in blogs %}
-         <div class="blog">
-            <h2>{{ row.blog }}</h2>
-            {% if row.imagen %}
-                  {% thumbnail row.imagen "190x130" crop="center" as im %}
-                  <img align="left" alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                  {% endthumbnail %}
-            {% endif %}
-            <div class="blogtexto"><p class="fecha">{{ row.fecha|date:"" }}</p>
-                <p>{{ row.texto|truncatewords_html:50 }}..</p>
-                <a href="/blogs/{{ row.idblog }}" class="mas">ver m&aacute;s</a>
-                 <div class="limpiar"></div>
-                    </div><!--blogtexto-->
-                 <div class="limpiar"></div>
-                 </div><!--blog--> {% endfor %}
-                 <div class="limpiar"></div>
-                 </div><!--blogs-->
-</td>
-    <td valign="top"><div id="derecha">
-  <div id="cajainvitados">
-            <div id="titularinvitados"><h1> Blog Hij@s </h1>
-            </div><!--titularinvitados-->{% for row in blogs %}{% spaceless %}
-            <div class="articuloinvitados">
-             <a href="/blogs/{{ row.idblog }}">
-            {{ row.blog }}</a></div><!--articuloinvitados-->{% endspaceless %}{% endfor %}
-            <a href="/blogs.php"  class="mas">ver m&aacute;s</a>
-            <div class="limpiar"></div>
-  </div><!--cajainvitados-->
-  <div class="limpiar"></div>
-  <div id="cajaenlaces">
-        <div id="titularenlace"><h1>Enlaces </h1>
-        </div><!--titularenlace-->{% for row in enlaces %}{% spaceless %}
-      <div class="enlace">
-          <p class="textoazul">{{ row.enlace }}<br /><br /></p>
-         <p class="textoazul">
-         <a href="http://{{ row.url }}">{{ row.url }}</a><br /><br /></p>
-    </div><!--enlace-->{% endspaceless %}{% endfor %}<a href="#" class="mas">ver m&aacute;s</a>
-    <div class="limpiar"></div>
-    </div><!--cajaenlaces--></div>
-  <div class="limpiar"></div>
-</div>
-  <!--derecha-->
-<div class="limpiar">
-</div></td>
-</tr>
-</table>
+        <p>{{ row.descripcion|truncatewords_html:50 }}</p>
+        <p><a href="/pagina/{{ row.idpagina }}" target="_blank">ver m&aacute;s</a></p>
+        <hr/>
+    {% endfor %}
+    {% for row in blogs %}
+       <h2>{{ row.blog }}</h2>
+        {% if row.imagen %}
+             {% thumbnail row.imagen "190x130" crop="center" as im %}
+             <figure><img alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></figure>
+             {% endthumbnail %}
+        {% endif %}
+        <p>{{ row.fecha|date:"" }}</p>
+        <p>{{ row.texto|truncatewords_html:50 }}..</p>
+        <a href="/blogs/{{ row.idblog }}">ver m&aacute;s</a>
+        <hr/>
+    {% endfor %}
+{% endif %}    
 {% endblock %}

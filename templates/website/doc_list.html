@@ -2,19 +2,16 @@
 {% load thumbnail %}
 {% block content %}
 {% for doc in object_list %}
-    <div class="limpiar"></div>
     <h2>{{ doc.doc }}</h2>
     {% if doc.imagen %}
+    <figure>
     {% thumbnail doc.imagen "190x130" crop="center" as im %}
     <img align="left" alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
+    </figure>
     {% endif %}
-    <div class="doctexto">
         <cite>{{ doc.fecha }} - {{ doc.autor }}</cite>
         <p>{{ doc.descripcion|truncatewords_html:50 }}</p>
-        <a href="/docs/{{ doc.iddoc }}" target="_blank" class="mas">ver m&aacute;s</a></p>
-        <div class="limpiar"></div>
-    </div>
-    <div class="limpiar"></div>
+        <a href="/docs/{{ doc.iddoc }}">ver m&aacute;s</a></p>
 {% endfor %}
 {% endblock %}

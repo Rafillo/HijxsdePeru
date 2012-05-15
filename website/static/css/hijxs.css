@@ -1,0 +1,15 @@
+article { float:left; margin-left:0x;   width:500px; }
+article figure {float: left; position: relative; margin: 0 12px 12px 12px;}
+	article figure img {display: block; background: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; clear: both;}
+nav {margin: 0 0 30px; padding-top: 12px; border-top: 3px solid #cecece; text-align: center;}
+	nav ol li {display: inline-block; margin-bottom: 6px; padding-right: 12px;}
+		nav ol li:last-child {padding-right: 0;}
+		nav ol li a {text-decoration: none; font-size: 12px; text-transform: uppercase; color: #444; font-family: palatino, georgia, times, serif; white-space: nowrap;}
+			nav ol li a:after {content: "\2605"; position: absolute; top: 100%; display: block; width: 100%; text-align: center; font-size: 10px; line-height: 10px; color: #f7f7f7; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
+			nav ol li a:hover:after {color: #009;}
+div.wrapper {width: 90%; max-width: 700px; margin: 0 auto;}
+	.ie body {text-align: center;}
+	.ie div.wrapper {text-align: left; width: 580px;}
+aside   { float:right; margin-left:0; width: 150px; }
+footer  { clear:both; }

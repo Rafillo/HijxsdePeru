@@ -1,38 +1,51 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Hij@s de Perú - Contra toda impunidad</title>
-<!--[if lt IE 7]>
-<link href="css/iestyle.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-
-<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+<!doctype html>
+<html class="no-js" lang="en">
+<head id="hijosdeperu.org" data-template-set="html5-reset">
+	<meta charset="utf-8">
+	<title>Hij@s de Perú - Contra toda impunidad</title>
+	<meta name="title" content="Hij@s de Perú - Contra toda impunidad">
+	<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/static/css/hijxs.css" rel="stylesheet" type="text/css" />
+	<script src="/static/js/modernizr-1.7.min.js"></script>
 </head>
 <body>
- <div align="center"><!--primerdiv-->
-   <div id="contenedor">
-	<div id="banner">
-	<div align="center"><a href="/"><img src="/static/img/bandera2.png"  alt="" width="600" height="205" border="0" /></a></div>		           <!--img-->
-	</div><!--banner-->
-	<div class="barragristop"><a href="/">INICIO</a></div>
-	<div class="barragristop"><a href="/blogs.php">BLOG</a>	</div>
-    <div class="barragristop"><a href="/docs.php">Documentos</a>	</div>
-	<div class="barraverde"></div>
-
+<div class="wrapper">
+<header>
+	<h1><a href="/"><img src="/static/img/bandera2.png"  alt="" width="600" height="205" border="0" /></a></h1>
+	<nav>
+		<ol>
+		<li><a href="/">Inicio</a></li>
+		<li><a href="/blogs.php">Blogs</a></li>
+		<li><a href="/docs.php">Documentos</a></li>
+		</ol>
+	</nav>
+</header>
+<article>
 {% block content %}
-Hello World!
+Hijxs de Perú
 {% endblock %}
-<div class="limpiar"></div>
-<div id="barra">
-	<div class="barraverde">Contra toda Impunidad</div>
-	<div class="barragris">	<a  href="http://www.hijosdeperu.org">Hij@s de Per&uacute;</a> 
+</article>
+<aside>
+    <h1> Blog Hij@s </h1>
+    {% for row in blogs %}
+        {% spaceless %}
+        <a href="/blogs/{{ row.idblog }}">{{ row.blog }}</a>
+        {% endspaceless %}
+    {% endfor %}
+    <a href="/blogs.php">ver m&aacute;s</a>
+    <h1>Enlaces </h1>
+    {% for row in enlaces %}
+        {% spaceless %}
+        <p>{{ row.enlace }}</p>
+        <p><a href="http://{{ row.url }}">{{ row.url }}</a></p>
+        {% endspaceless %}
+    {% endfor %}<a href="#">ver m&aacute;s</a>
+</aside>
+<footer>
+	<div>Contra toda Impunidad</div>
+	<div><a  href="http://www.hijosdeperu.org">Hij@s de Per&uacute;</a></div>
+	<div><a href="mailto:hijos@hijosdeperu.org">Cont&aacute;ctenos</a></div>
+</footer>
 </div>
-	<div class="barragris">	<a href="mailto:hijos@hijosdeperu.org">Cont&aacute;ctenos</a> 
-	</div>
-</div><!--barra-->	
-</div><!--cuerpo-->	
-</div> <!--contenedor-->
-</div><!--center-->
 </body>
-</html>  
+</html>
