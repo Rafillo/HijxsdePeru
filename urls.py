@@ -8,7 +8,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'hijxs.website.views.home', name='home'),
+    url(r'^$', 'website.views.home', name='home'),
     url(r'^pagina/(?P<pk>\d+)', PaginaDetailView.as_view() ,name='pagina_detail'),
     url(r'^blogs/(?P<pk>\d+)', BlogDetailView.as_view() ,name='blog_detail'),
     url(r'^blogs', ListView.as_view(model=blog) ),

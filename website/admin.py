@@ -1,4 +1,4 @@
-from hijxs.website.models import *
+from website.models import *
 from django.contrib import admin
 
 admin.site.register(pagina)
