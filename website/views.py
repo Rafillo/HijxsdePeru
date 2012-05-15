@@ -7,14 +7,14 @@ from django.views.generic import DetailView
 def home(request):
     paginas = pagina.objects.all()[:5]
     blogs = blog.objects.order_by('-fecha')[:6]
-    tipos_autor = tipo_autor.objects.all()
     enlaces = enlace.objects.all()[:3]
+    tipos_autor = tipo_autor.objects.all()
 
     return render_to_response('home.html',{
         'paginas': paginas,
         'blogs': blogs,
-        'tipo_autor': tipo_autor,
         'enlaces': enlaces,
+        'tipo_autor': tipo_autor,
     })
 
 class PaginaDetailView(DetailView):

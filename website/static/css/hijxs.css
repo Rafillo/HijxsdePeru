@@ -10,6 +10,7 @@ nav {margin: 0 0 30px; padding-top: 12px; border-top: 3px solid #cecece; text-al
 			nav ol li a:hover:after {color: #009;}
 div.wrapper {width: 90%; max-width: 700px; margin: 0 auto;}
 	.ie body {text-align: center;}
-	.ie div.wrapper {text-align: left; width: 580px;}
+	.ie div.wrapper {text-align: left; width: 700px;}
 aside   { float:right; margin-left:0; width: 150px; }
 footer  { clear:both; }
+ul {list-style-type: square;}

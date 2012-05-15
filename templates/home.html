@@ -18,7 +18,7 @@
                   {% endthumbnail %}
               {% endif %}                 
         <p>{{ row.descripcion|truncatewords_html:50 }}</p>
-        <p><a href="/pagina/{{ row.idpagina }}" target="_blank">ver m&aacute;s</a></p>
+        <p><a href="/pagina/{{ row.idpagina }}">ver m&aacute;s</a></p>
         <hr/>
     {% endfor %}
     {% for row in blogs %}

@@ -10,8 +10,9 @@
     {% endthumbnail %}
     </figure>
     {% endif %}
-        <cite>{{ doc.fecha }} - {{ doc.autor }}</cite>
-        <p>{{ doc.descripcion|truncatewords_html:50 }}</p>
-        <a href="/docs/{{ doc.iddoc }}">ver m&aacute;s</a></p>
+    <cite>{{ doc.fecha }} - {{ doc.autor }}</cite>
+    <p>{{ doc.descripcion|striptags|truncatewords_html:50 }}</p>
+    <p><a href="/docs/{{ doc.iddoc }}">ver m&aacute;s</a></p>
+    <hr>
 {% endfor %}
 {% endblock %}

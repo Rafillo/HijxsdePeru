@@ -1,24 +1,24 @@
 <!doctype html>
 <html class="no-js" lang="en">
 <head id="hijosdeperu.org" data-template-set="html5-reset">
-	<meta charset="utf-8">
-	<title>Hij@s de Perú - Contra toda impunidad</title>
-	<meta name="title" content="Hij@s de Perú - Contra toda impunidad">
-	<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
-	<link href="/static/css/hijxs.css" rel="stylesheet" type="text/css" />
-	<script src="/static/js/modernizr-1.7.min.js"></script>
+    <meta charset="utf-8">
+    <title>Hij@s de Perú - Contra toda impunidad</title>
+    <meta name="title" content="Hij@s de Perú - Contra toda impunidad">
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/hijxs.css" rel="stylesheet" type="text/css" />
+    <script src="/static/js/xmodernizr-1.7.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
 <header>
-	<h1><a href="/"><img src="/static/img/bandera2.png"  alt="" width="600" height="205" border="0" /></a></h1>
-	<nav>
-		<ol>
-		<li><a href="/">Inicio</a></li>
-		<li><a href="/blogs.php">Blogs</a></li>
-		<li><a href="/docs.php">Documentos</a></li>
-		</ol>
-	</nav>
+    <h1><a href="/"><img src="/static/img/bandera2.png"  alt="" width="600" height="205" border="0" /></a></h1>
+    <nav>
+        <ol>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/docs">Documentos</a></li>
+        </ol>
+    </nav>
 </header>
 <article>
 {% block content %}
@@ -27,24 +27,33 @@ Hijxs de Perú
 </article>
 <aside>
     <h1> Blog Hij@s </h1>
+    <ul>
     {% for row in blogs %}
         {% spaceless %}
-        <a href="/blogs/{{ row.idblog }}">{{ row.blog }}</a>
+        <li><a href="/blogs/{{ row.idblog }}">{{ row.blog }}</a></li>
         {% endspaceless %}
     {% endfor %}
-    <a href="/blogs.php">ver m&aacute;s</a>
+    </ul>
+    <a href="/blogs">ver m&aacute;s</a>
+    <p>&nbsp;</p>
     <h1>Enlaces </h1>
+    <ul>
     {% for row in enlaces %}
         {% spaceless %}
         <p>{{ row.enlace }}</p>
-        <p><a href="http://{{ row.url }}">{{ row.url }}</a></p>
+        <li><a href="http://{{ row.url }}">{{ row.url }}</a></li>
         {% endspaceless %}
-    {% endfor %}<a href="#">ver m&aacute;s</a>
+    </ul>
+    {% endfor %}<a href="#">
 </aside>
 <footer>
-	<div>Contra toda Impunidad</div>
-	<div><a  href="http://www.hijosdeperu.org">Hij@s de Per&uacute;</a></div>
-	<div><a href="mailto:hijos@hijosdeperu.org">Cont&aacute;ctenos</a></div>
+<nav>
+<ol>
+    <li><a  href="/">Hij@s de Per&uacute;</a></li>
+    <li><a href="mailto:hijos@hijosdeperu.org">Cont&aacute;ctenos</a></li>
+</ol>
+    <cite>Contra toda Impunidad</cite>
+</nav>
 </footer>
 </div>
 </body>
