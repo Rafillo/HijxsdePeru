@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block content %}
+<h1>{{ blog.blog }}</h1>
+<p>
+<cite>{{ blog.fecha }} - {{ blog.autor }}</cite>
+</p>
+<p>
+{% if blog.imagen %}
+    {% thumbnail blog.imagen "190x130" crop="center" as im %}
+    <img align="left" alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+{% endif %}
+{{ blog.texto|linebreaks }}
+</p>
+{% endblock %}

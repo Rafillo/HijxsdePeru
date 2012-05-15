@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block content %}
+<h1>{{ pagina.pagina }}</h1>
+<p>
+{% if pagina.foto %}
+    {% thumbnail pagina.foto "190x130" crop="center" as im %}
+    <img align="left" alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+{% endif %}
+{{ pagina.descripcion|linebreaks }}
+</p>
+{% endblock %}

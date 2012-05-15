@@ -9,7 +9,9 @@ class pagina(models.Model):
     descripcion = models.TextField(verbose_name="Descripcion")
     class Meta:
         db_table = 'pagina'
+        verbose_name = 'Paginas'
         ordering = ['-idpagina']
+
     def __unicode__(self):
         return self.pagina
 
@@ -19,10 +21,11 @@ class tema(models.Model):
     tema = models.CharField(max_length=500, verbose_name="Titulo")
     class Meta:
         db_table = 'tema'
+        verbose_name = 'Tema'
         ordering = ['-idtema']
+
     def __unicode__(self):
         return self.tema
-
 
 
 class tipo_autor(models.Model):
@@ -30,7 +33,9 @@ class tipo_autor(models.Model):
     tipo_autor = models.CharField(max_length=500, verbose_name="Tipo Autor")
     class Meta:
         db_table = 'tipo_autor'
+        verbose_name = 'Tipo de Autor'
         ordering = ['-idtipo_autor']
+
     def __unicode__(self):
         return self.tipo_autor
 
@@ -43,7 +48,9 @@ class autor(models.Model):
     tipo_autor = models.ForeignKey(tipo_autor, db_column="idtipo_autor", verbose_name="TipoAutor")
     class Meta:
         db_table = 'autor'
+        verbose_name = 'Autores'
         ordering = ['idautor']
+
     def __unicode__(self):
         return self.autor
 
@@ -61,9 +68,31 @@ class blog(models.Model):
     portada = models.BooleanField(verbose_name="Portada?")
     class Meta:
         db_table = 'blog'
+        verbose_name = 'Blogs'
         ordering = ['autor']
+
     def __unicode__(self):
         return self.blog
+
+
+class blog(models.Model):
+    idblog = models.AutoField(primary_key=True, verbose_name="Id")
+    blog = models.CharField(max_length=500, verbose_name="Titulo")
+    autor = models.ForeignKey(autor, db_column="idautor", verbose_name="Autor")
+    tipo_autor = models.ForeignKey(tipo_autor, db_column="idtipo_autor", verbose_name="Tipo Autor")
+    fecha = models.DateField(verbose_name="Fecha")
+    resumen = models.TextField(verbose_name="Resumen")
+    texto = models.TextField(verbose_name="Descripcion")
+    imagen = models.ImageField(upload_to='imagen', verbose_name="Imagen 1")
+    tema = models.ForeignKey(tema, db_column="idtema", verbose_name="Tema")
+    portada = models.BooleanField(verbose_name="Portada?")
+    class Meta:
+        db_table = 'blogs'
+        verbose_name = 'Blogs'
+        ordering = ['autor']
+
+    def __unicode__(self):
+        return self.blogs
 
 
 class comentario(models.Model):
@@ -74,10 +103,12 @@ class comentario(models.Model):
     email = models.EmailField(max_length=80, verbose_name="Email")
     publicado = models.BooleanField(verbose_name="Publicado")
     fecha = models.DateField(auto_now_add=True, verbose_name="Fecha")
-    ip = models.IPAddressField(verbose_name="IP")
+    ip = models.IPAddressField(max_length=15, verbose_name="Ip")
     class Meta:
         db_table = 'comentario'
+        verbose_name = 'Comentario'
         ordering = ['-idcomentario']
+
     def __unicode__(self):
         return self.comentario
 
@@ -85,12 +116,14 @@ class comentario(models.Model):
 class doc(models.Model):
     iddoc = models.AutoField(primary_key=True, verbose_name="Id")
     doc = models.CharField(max_length=500, verbose_name="Titulo")
-    portada = models.ImageField(upload_to='doc', verbose_name="Imagen")
+    portada = models.ImageField(upload_to='portada', verbose_name="Imagen")
     descripcion = models.TextField(verbose_name="Descripcion")
-    archivo = models.FileField(upload_to='doc', verbose_name="Archivo")
+    archivo = models.FileField(upload_to='archivo', verbose_name="Archivo")
     class Meta:
         db_table = 'doc'
+        verbose_name = 'Documentos'
         ordering = ['-iddoc']
+
     def __unicode__(self):
         return self.doc
 
@@ -103,7 +136,9 @@ class noticia(models.Model):
     foto = models.ImageField(upload_to='noticia', verbose_name="Foto")
     class Meta:
         db_table = 'noticia'
+        verbose_name = 'Noticias'
         ordering = ['-fecha']
+
     def __unicode__(self):
         return self.noticia
 
@@ -116,7 +151,9 @@ class enlace(models.Model):
     imagen = models.ImageField(upload_to='enlace', verbose_name="Imagen")
     class Meta:
         db_table = 'enlace'
+        verbose_name = 'Enlaces'
         ordering = ['-idenlace']
+
     def __unicode__(self):
         return self.enlace
 
@@ -127,7 +164,9 @@ class galeria(models.Model):
     fecha = models.DateField(verbose_name="Fecha")
     class Meta:
         db_table = 'galeria'
+        verbose_name = 'Galeria de Fotos'
         ordering = ['-idgaleria']
+
     def __unicode__(self):
         return self.galeria
 
@@ -139,7 +178,9 @@ class foto(models.Model):
     imagen = models.ImageField(upload_to='foto', verbose_name="Foto")
     class Meta:
         db_table = 'foto'
-        ordering = ['-galeria', '-idfoto']
+        verbose_name = 'Fotos'
+        ordering = ['-galeria','-idfoto']
+
     def __unicode__(self):
         return self.foto
 
@@ -153,6 +194,11 @@ class agenda(models.Model):
     organiza = models.CharField(max_length=500, verbose_name="Organizado por")
     class Meta:
         db_table = 'agenda'
+        verbose_name = 'Agenda'
         ordering = ['-fecha']
+
     def __unicode__(self):
         return self.agenda
+
+
+
