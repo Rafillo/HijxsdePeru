@@ -6,7 +6,7 @@
 <cite>{{ doc.fecha }} - {{ doc.autor }}</cite>
 </p>
 {% if doc.imagen %}
-    {% thumbnail doc.imagen "190x130" crop="center" as im %}
+    {% thumbnail doc.imagen "300" crop="center" as im %}
     <img align="left" alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
