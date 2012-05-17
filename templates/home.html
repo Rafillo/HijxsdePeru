@@ -14,7 +14,7 @@
         <h2>{{ row.pagina }}</h2>
               {% if row.foto %}
                   {% thumbnail row.foto "190x130" crop="center" as im %}
-                  <figure><img alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></figure>
+                  <figure><img alt="Foto - {{ row.pagina }}" title="{{ row.pagina }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></figure>
                   {% endthumbnail %}
               {% endif %}                 
         <p>{{ row.descripcion|truncatewords_html:50 }}</p>
@@ -25,7 +25,7 @@
        <h2>{{ row.blog }}</h2>
         {% if row.imagen %}
              {% thumbnail row.imagen "190x130" crop="center" as im %}
-             <figure><img alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></figure>
+             <figure><img alt="Foto {{ row.blog }}" title="{{ row.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></figure>
              {% endthumbnail %}
         {% endif %}
         <p>{{ row.fecha|date:"" }}</p>

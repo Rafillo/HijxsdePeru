@@ -6,7 +6,7 @@
     {% if doc.imagen %}
     <figure>
     {% thumbnail doc.imagen "190x130" crop="center" as im %}
-    <img align="left" alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    <img align="left" alt="Foto - {{ doc.doc }}" title="{{ doc.doc }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
     </figure>
     {% endif %}

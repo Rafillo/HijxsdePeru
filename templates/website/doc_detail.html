@@ -7,7 +7,7 @@
 </p>
 {% if doc.imagen %}
     {% thumbnail doc.imagen "300" crop="center" as im %}
-    <img align="left" alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    <img align="left" alt="Foto - {{ doc.doc}}" title="{{ doc.doc }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
 {{ doc.descripcion|linebreaks }}

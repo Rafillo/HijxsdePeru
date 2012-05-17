@@ -6,7 +6,7 @@
     {% if blog.imagen %}
     <figure>
     {% thumbnail blog.imagen "190x130" crop="center" as im %}
-    <img alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    <img alt="Foto - {{ blog.blog}}" title="{{ blog.blog}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
     </figure>
     {% endif %}

@@ -5,7 +5,7 @@
 <p>
 {% if pagina.foto %}
     {% thumbnail pagina.foto "300" crop="center" as im %}
-    <img align="left" alt="Foto" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    <img align="left" alt="Foto - {{ pagina.pagina }}" title="{{ pagina.pagina }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
 {{ pagina.descripcion|linebreaks }}
