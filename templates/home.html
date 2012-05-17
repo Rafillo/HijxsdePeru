@@ -2,36 +2,42 @@
 {% load thumbnail %}
 {% block content %}
 {% if row %}
-          <h2>{{ row.pagina }}</h2>
-            {% if row.imagen %}
-                {% thumbnail row.imagen "190x190" crop="center" as im %}
-                <figure><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></figure>
-                {% endthumbnail %}
-            {% endif %}
-            <p>{{ row.descripcion|linebreaks }}</p>
+    <!-- <article> -->
+    <h2>{{ row.pagina }}</h2>
+    {% if row.imagen %}
+        {% thumbnail row.imagen "190x190" crop="center" as im %}
+        <figure><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></figure>
+        {% endthumbnail %}
+    {% endif %}
+    {{ row.descripcion|linebreaks }}
+    <!-- </article> -->
 {% else %}
     {% for row in paginas %}
+        <!-- <article> -->
         <h2>{{ row.pagina }}</h2>
               {% if row.foto %}
                   {% thumbnail row.foto "190x130" crop="center" as im %}
-                  <figure><img alt="Foto - {{ row.pagina }}" title="{{ row.pagina }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></figure>
+                  <figure><a href="/pagina/{{ row.idpagina }}"><img alt="Foto - {{ row.pagina }}" title="{{ row.pagina }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a></figure>
                   {% endthumbnail %}
               {% endif %}                 
         <p>{{ row.descripcion|truncatewords_html:50 }}</p>
         <p><a href="/pagina/{{ row.idpagina }}">ver m&aacute;s</a></p>
         <hr/>
+        <!-- </article> -->
     {% endfor %}
     {% for row in blogs %}
+       <!-- <article> -->
        <h2>{{ row.blog }}</h2>
         {% if row.imagen %}
              {% thumbnail row.imagen "190x130" crop="center" as im %}
-             <figure><img alt="Foto {{ row.blog }}" title="{{ row.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></figure>
+             <figure><a href="/blogs/{{ row.idblog }}"><img alt="Foto {{ row.blog }}" title="{{ row.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a></figure>
              {% endthumbnail %}
         {% endif %}
         <p>{{ row.fecha|date:"" }}</p>
         <p>{{ row.texto|truncatewords_html:50 }}..</p>
         <a href="/blogs/{{ row.idblog }}">ver m&aacute;s</a>
         <hr/>
+        <!-- </article> -->
     {% endfor %}
 {% endif %}    
 {% endblock %}

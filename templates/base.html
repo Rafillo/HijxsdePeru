@@ -8,12 +8,12 @@
     <meta name="description" content="Hij@s de Perú" />
     <link href="/static/css/style.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/hijxs.css" rel="stylesheet" type="text/css" />
-    <script src="/static/js/xmodernizr-1.7.min.js"></script>
+    <!-- script src="/static/js/modernizr-1.7.min.js"></script -->
 </head>
 <body>
 <div class="wrapper">
 <header>
-    <h1><a href="/"><img src="/static/img/bandera2.png"  alt="Hijos / Hijas de Perú" title="Hijos / Hijas de Perú" width="600" height="205" border="0" /></a></h1>
+    <h1><a href="/"><img src="/static/img/bandera2.png"  alt="Hijos / Hijas de Perú" title="Hijos / Hijas de Perú" width="600" height="205" /></a></h1>
     <nav>
         <ol>
         <li><a href="/">Inicio</a></li>
@@ -42,8 +42,8 @@ Hijxs de Perú
     <ul>
     {% for row in enlaces %}
         {% spaceless %}
-        <p>{{ row.enlace }}</p>
-        <li><a href="http://{{ row.url }}">{{ row.url }}</a></li>
+        <li>{{ row.enlace }}<br/>
+        <a href="http://{{ row.url }}">{{ row.url }}</a></li>
         {% endspaceless %}
     {% endfor %}
     </ul>

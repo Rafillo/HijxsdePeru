@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 {% block content %}
+<!-- <article> -->
 <h1>{{ blog.blog }}</h1>
-<p>
 <cite>{{ blog.fecha }} - {{ blog.autor }}</cite>
-</p>
 {% if blog.imagen %}
     {% thumbnail blog.imagen "300" crop="center" as im %}
     <img align="left" alt="Foto - {{ blog.blog }}" title="{{ blog.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
@@ -12,7 +11,6 @@
 {% endif %}
 {{ blog.texto|linebreaks }}
 <p>&nbsp;<p>
-<comments>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'hijxsdeperu';
@@ -24,5 +22,5 @@
     })();
 </script>
 <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-<comments>
+<!-- </article> -->
 {% endblock %}
