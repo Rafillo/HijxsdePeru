@@ -11,6 +11,27 @@
     <!-- script src="/static/js/modernizr-1.7.min.js"></script -->
 </head>
 <body>
+<div id="fb-root" style="display: none"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+/*
+      appId      : 'YOUR_APP_ID', // App ID
+      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+*/
+      status     : true,
+      cookie     : true,
+      xfbml      : true
+    });
+  };
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
 <div class="wrapper">
 <header>
     <h1><a href="/"><img src="/static/img/bandera2.png"  alt="Hijos / Hijas de Perú" title="Hijos / Hijas de Perú" width="600" height="205" /></a></h1>
@@ -47,6 +68,9 @@ Hijxs de Perú
         {% endspaceless %}
     {% endfor %}
     </ul>
+</aside>
+<aside>
+<div class="fb-activity" data-site="www.hijosdeperu.org" data-width="175" data-height="300" data-header="true" data-recommendations="true"></div>
 </aside>
 <footer>
 <nav>
