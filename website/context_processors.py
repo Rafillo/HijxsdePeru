@@ -1,7 +1,7 @@
-from models import blog, enlace
+from models import Blog, enlace
 
 def sidebar(request):
-    blogs = blog.objects.order_by('-fecha')[:6]
+    blogs = Blog.objects.order_by('-fecha')[:6]
     enlaces = enlace.objects.all()[:3]
     return {
         'blogs': blogs,

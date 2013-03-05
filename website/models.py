@@ -55,7 +55,7 @@ class autor(models.Model):
         return self.autor
 
 
-class blog(models.Model):
+class Blog(models.Model):
     idblog = models.AutoField(primary_key=True, verbose_name="Id")
     blog = models.CharField(max_length=500, verbose_name="Titulo")
     autor = models.ForeignKey(autor, db_column="idautor", verbose_name="Autor")
@@ -63,19 +63,20 @@ class blog(models.Model):
     fecha = models.DateField(verbose_name="Fecha")
     resumen = models.TextField(verbose_name="Resumen")
     texto = models.TextField(verbose_name="Descripcion")
-    imagen = models.ImageField(upload_to='blog', verbose_name="Imagen 1")
+    imagen = models.ImageField(upload_to='blog',  null=True, blank=True, verbose_name="Imagen 1")
     tema = models.ForeignKey(tema, db_column="idtema", verbose_name="Tema")
     portada = models.BooleanField(verbose_name="Portada?")
     class Meta:
         db_table = 'blog'
         verbose_name = 'Blogs'
-        ordering = ['autor']
+        ordering = ['-fecha']
 
     def __unicode__(self):
         return self.blog
 
-
+"""
 class blog(models.Model):
+    formfield_overrides = {models.TextField: {'widget': AdminMarkItUpWidget}}
     idblog = models.AutoField(primary_key=True, verbose_name="Id")
     blog = models.CharField(max_length=500, verbose_name="Titulo")
     autor = models.ForeignKey(autor, db_column="idautor", verbose_name="Autor")
@@ -93,11 +94,12 @@ class blog(models.Model):
 
     def __unicode__(self):
         return self.blogs
+"""
 
 
 class comentario(models.Model):
     idcomentario = models.AutoField(primary_key=True, verbose_name="Id")
-    blog = models.ForeignKey(blog, db_column="idblog", verbose_name="Blog")
+    blog = models.ForeignKey(Blog, db_column="idblog", verbose_name="Blog")
     nombre = models.CharField(max_length=80, verbose_name="Nombre")
     comentario = models.TextField(verbose_name="Comentario")
     email = models.EmailField(max_length=80, verbose_name="Email")
@@ -116,9 +118,9 @@ class comentario(models.Model):
 class doc(models.Model):
     iddoc = models.AutoField(primary_key=True, verbose_name="Id")
     doc = models.CharField(max_length=500, verbose_name="Titulo")
-    portada = models.ImageField(upload_to='portada', verbose_name="Imagen")
+    portada = models.ImageField(upload_to='doc', verbose_name="Imagen")
     descripcion = models.TextField(verbose_name="Descripcion")
-    archivo = models.FileField(upload_to='archivo', verbose_name="Archivo")
+    archivo = models.FileField(upload_to='doc', verbose_name="Archivo")
     class Meta:
         db_table = 'doc'
         verbose_name = 'Documentos'

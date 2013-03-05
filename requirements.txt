@@ -1,3 +1,4 @@
 Django
 sorl-thumbnail
-psycopg2
+django-markitup
+django-model-utils

@@ -19,9 +19,9 @@ nav {margin: 0 0 30px; padding-top: 12px; border-top: 3px solid #cecece; text-al
 			nav ol li a:after {content: "\2605"; position: absolute; top: 100%; display: block; width: 100%; text-align: center; font-size: 10px; line-height: 10px; color: #f7f7f7; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
 */
 			nav ol li a:hover:after {color: #009;}
-div.wrapper {width: 90%; max-width: 700px; margin: 0 auto;}
+div.wrapper {width: 90%; max-width: 810px; margin: 0 auto;}
 	.ie body {text-align: center;}
-	.ie div.wrapper {text-align: left; width: 700px;}
-aside   { float:right; margin-left:0; width: 175px; }
+	.ie div.wrapper {text-align: left; width: 810px;}
+aside   { float:right; margin-left:0; width: 300px; }
 footer  { clear:both; }
 ul {list-style-type: square;}

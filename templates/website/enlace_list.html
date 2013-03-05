@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block content %}
+{% for enlace in object_list %}
+    <h2>{{ enlace.enlace }}</h2>
+    {% if enlace.imagen %}
+    <figure>
+    {% thumbnail enlace.imagen "190x130" crop="center" as im %}
+    <img align="left" alt="Foto - {{ enlace.enlace }}" title="{{ enlace.enlace }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+    </figure>
+    {% endif %}
+    <p>{{ enlace.url }}</p>
+    <p>{{ enlace.texto|striptags|truncatewords_html:50 }}</p>
+    <hr>
+{% endfor %}
+{% endblock %}

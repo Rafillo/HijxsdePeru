@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block content %}
+{% for galeria in object_list %}
+    <h2>{{ galeria.galeria }}</h2>
+    {% if galeria.imagen %}
+    <figure>
+    {% thumbnail galeria.imagen "190x130" crop="center" as im %}
+    <img align="left" alt="Foto - {{ galeria.galeria }}" title="{{ galeria.galeria }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+    </figure>
+    {% endif %}
+    <p>{{ galeria.url }}</p>
+    <p>{{ galeria.texto|striptags|truncatewords_html:50 }}</p>
+    <hr>
+{% endfor %}
+{% endblock %}

@@ -6,7 +6,7 @@ from django.views.generic import DetailView
 
 def home(request):
     paginas = pagina.objects.all()[:5]
-    blogs = blog.objects.order_by('-fecha')[:6]
+    blogs = Blog.objects.order_by('-fecha')[:6]
     enlaces = enlace.objects.all()[:3]
     tipos_autor = tipo_autor.objects.all()
 
@@ -25,7 +25,7 @@ class PaginaDetailView(DetailView):
         return object
 
 class BlogDetailView(DetailView):
-    queryset = blog.objects.all()
+    queryset = Blog.objects.all()
 
     def get_object(self):
         object = super(BlogDetailView, self).get_object()
@@ -36,4 +36,11 @@ class DocDetailView(DetailView):
 
     def get_object(self):
         object = super(DocDetailView, self).get_object()
+        return object
+
+class NoticiaDetailView(DetailView):
+    queryset = noticia.objects.all()
+
+    def get_object(self):
+        object = super(NoticiaDetailView, self).get_object()
         return object

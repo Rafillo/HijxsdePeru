@@ -126,7 +126,14 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'sorl.thumbnail',
     'website',
+    'markitup',
 )
+
+MARKITUP_SET = 'markitup/sets/markdown'
+#MARKITUP_FILTER = ('utils.markup_filter', {})
+MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': False})
+#MARKITUP_FILTER = ('django.contrib.markup.templatetags.markup.textile', {})
+#MARKITUP_PREVIEW_FILTER = None
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

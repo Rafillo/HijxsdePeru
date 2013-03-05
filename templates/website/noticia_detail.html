@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block content %}
+<h1>{{ noticia.noticia }}</h1>
+<p>
+<cite>{{ noticia.fecha }} - {{ noticia.autor }}</cite>
+</p>
+{% if noticia.imagen %}
+    {% thumbnail noticia.imagen "300" crop="center" as im %}
+    <img align="left" alt="Foto - {{ noticia.noticia}}" title="{{ noticia.noticia }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+{% endif %}
+{{ noticia.texto|linebreaks }}
+{% endblock %}

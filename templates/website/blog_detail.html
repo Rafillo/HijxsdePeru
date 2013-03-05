@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load markitup_tags %}
 {% load thumbnail %}
 {% block content %}
 <!-- <article> -->
@@ -9,7 +10,7 @@
     <img align="left" alt="Foto - {{ blog.blog }}" title="{{ blog.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
-{{ blog.texto|linebreaks }}
+{{ blog.texto|render_markup|safe }}
 <p>&nbsp;<p>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
