@@ -13,27 +13,9 @@
     <!-- script src="/static/js/modernizr-1.7.min.js"></script -->
 </head>
 <body>
-<div id="fb-root" style="display: none"></div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-/*
-      appId      : 'YOUR_APP_ID', // App ID
-      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
-*/
-      status     : true,
-      cookie     : true,
-      xfbml      : true
-    });
-  };
-  (function(d){
-     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     ref.parentNode.insertBefore(js, ref);
-   }(document));
-</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));</script>
+
 <div class="wrapper">
 <header>
     <h1><a href="/"><img src="/static/img/bandera2.png"  alt="Hijos / Hijas de Perú" title="Hijos / Hijas de Perú" width="600" height="205" /></a></h1>
@@ -43,7 +25,6 @@
         <li><a href="/blogs">Blogs</a></li>
         <li><a href="/docs">Documentos</a></li>
         <li><a href="/noticias">Noticias</a></li>
-        <li><a href="/galerias">Galer&iacute;as</a></li>
         <li><a href="/enlaces">Enlaces</a></li>
         </ol>
     </nav>
@@ -54,22 +35,17 @@ Hijxs de Perú
 {% endblock %}
 </article>
 <aside>
-    <div class="fb-like-box" data-href="http://www.facebook.com/pages/Hijos-de-Peru/286147748069235" data-width="300" data-height="400" data-show-faces="true" data-stream="true" data-header="false"></div>
-    <!--
-    <div class="fb-activity" data-site="www.hijosdeperu.org" data-width="300" data-height="300" data-header="true" data-recommendations="true"></div>
-    -->
     <p>&nbsp;</p>
 </aside>
 <aside>
     <h1> Blog Hij@s </h1>
     <ul>
-    {% for row in blogs %}
+    {% for row in blogs|slice:":3" %}
         {% spaceless %}
         <li><a href="/blogs/{{ row.idblog }}">{{ row.blog }}</a></li>
         {% endspaceless %}
     {% endfor %}
     </ul>
-    <a href="/blogs">ver m&aacute;s</a>
     <p>&nbsp;</p>
     <h1>Enlaces </h1>
     <ul>

@@ -2,7 +2,7 @@
 {% load thumbnail %}
 {% block content %}
 {% for noticia in object_list %}
-    <h2>{{ noticia.noticia }}</h2>
+    <h2><a href="/noticias/{{ noticia.idnoticia }}">{{ noticia.noticia }}</a></h2>
     {% if noticia.imagen %}
     <figure>
     {% thumbnail noticia.imagen "190x130" crop="center" as im %}

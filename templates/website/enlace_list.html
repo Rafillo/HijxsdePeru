@@ -10,7 +10,7 @@
     {% endthumbnail %}
     </figure>
     {% endif %}
-    <p>{{ enlace.url }}</p>
+    <p><a href="http://{{ enlace.url }}">{{ enlace.url }}</a></p>
     <p>{{ enlace.texto|striptags|truncatewords_html:50 }}</p>
     <hr>
 {% endfor %}

@@ -14,15 +14,15 @@
 {% else %}
     {% for row in blogs %}
        <!-- <article> -->
-       <h2>{{ row.blog }}</h2>
+       <h2><a href="/blogs/{{ row.idblog }}">{{ row.blog }}</a></h2>
         {% if row.imagen %}
              {% thumbnail row.imagen "190x130" crop="center" as im %}
              <figure><a href="/blogs/{{ row.idblog }}"><img alt="Foto {{ row.blog }}" title="{{ row.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a></figure>
              {% endthumbnail %}
         {% endif %}
-        <p>{{ row.fecha|date:"" }}</p>
+        <p><cite>{{ row.fecha|date:"" }}</cite></p>
         <p>{{ row.texto|truncatewords_html:50 }}..</p>
-        <a href="/blogs/{{ row.idblog }}">ver m&aacute;s</a>
+        <a href="/blogs/{{ row.idblog }}">ver m&aacute;s...</a>
         <hr/>
         <!-- </article> -->
     {% endfor %}

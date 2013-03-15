@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+#import os
 from django.db import models
 
 class pagina(models.Model):
@@ -74,29 +75,6 @@ class Blog(models.Model):
     def __unicode__(self):
         return self.blog
 
-"""
-class blog(models.Model):
-    formfield_overrides = {models.TextField: {'widget': AdminMarkItUpWidget}}
-    idblog = models.AutoField(primary_key=True, verbose_name="Id")
-    blog = models.CharField(max_length=500, verbose_name="Titulo")
-    autor = models.ForeignKey(autor, db_column="idautor", verbose_name="Autor")
-    tipo_autor = models.ForeignKey(tipo_autor, db_column="idtipo_autor", verbose_name="Tipo Autor")
-    fecha = models.DateField(verbose_name="Fecha")
-    resumen = models.TextField(verbose_name="Resumen")
-    texto = models.TextField(verbose_name="Descripcion")
-    imagen = models.ImageField(upload_to='imagen', verbose_name="Imagen 1")
-    tema = models.ForeignKey(tema, db_column="idtema", verbose_name="Tema")
-    portada = models.BooleanField(verbose_name="Portada?")
-    class Meta:
-        db_table = 'blogs'
-        verbose_name = 'Blogs'
-        ordering = ['autor']
-
-    def __unicode__(self):
-        return self.blogs
-"""
-
-
 class comentario(models.Model):
     idcomentario = models.AutoField(primary_key=True, verbose_name="Id")
     blog = models.ForeignKey(Blog, db_column="idblog", verbose_name="Blog")
@@ -125,6 +103,16 @@ class doc(models.Model):
         db_table = 'doc'
         verbose_name = 'Documentos'
         ordering = ['-iddoc']
+
+    """
+    def extension(self):
+        name, extension = os.path.splitext(self.archivo.name)
+        if extension == '.pdf':
+            return 'pdf'
+        if extension == '.doc' or extension == '.docx':
+            return 'word'
+        return 'other'
+    """
 
     def __unicode__(self):
         return self.doc
