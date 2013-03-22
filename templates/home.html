@@ -1,43 +1,39 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 {% block content %}
-{% if row %}
-    <!-- <article> -->
-    <h2>{{ row.pagina }}</h2>
-    {% if row.imagen %}
-        {% thumbnail row.imagen "190x190" crop="center" as im %}
-        <figure><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></figure>
-        {% endthumbnail %}
-    {% endif %}
-    {{ row.descripcion|linebreaks }}
-    <!-- </article> -->
-{% else %}
     {% for row in blogs %}
-       <!-- <article> -->
-       <h2><a href="/blogs/{{ row.idblog }}">{{ row.blog }}</a></h2>
-        {% if row.imagen %}
-             {% thumbnail row.imagen "190x130" crop="center" as im %}
-             <figure><a href="/blogs/{{ row.idblog }}"><img alt="Foto {{ row.blog }}" title="{{ row.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a></figure>
-             {% endthumbnail %}
-        {% endif %}
-        <p><cite>{{ row.fecha|date:"" }}</cite></p>
-        <p>{{ row.texto|truncatewords_html:50 }}..</p>
-        <a href="/blogs/{{ row.idblog }}">ver m&aacute;s...</a>
-        <hr/>
-        <!-- </article> -->
+
+            {% if forloop.counter0|divisibleby:"3" %}<div class="row-fluid">{% endif %}
+            <div class="span4">
+              <h3><a href="/blogs/{{ row.idblog }}">{{ row.blog|truncatewords:7}}</a></h3>
+              <p>
+              {% if row.imagen %}
+                {% thumbnail row.imagen "133x91" crop="center" as im %}
+                <a href="/blogs/{{ row.idblog }}"><img class="img-polaroid" style="float:left" alt="Foto {{ row.blog }}" title="{{ row.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
+                {% endthumbnail %}
+              {% endif %}
+              {{ row.texto|truncatewords_html:50 }}
+              </p>
+              <p><a class="btn" href="/blogs/{{ row.idblog }}">ver m&aacute;s &raquo;</a></p>
+              <!-- <p><cite>{{ row.fecha|date:"" }}</cite></p> -->
+            </div><!--/span-->
+            {% if forloop.last or forloop.counter|divisibleby:"3" %}</div><!--/row-->{% endif %}
     {% endfor %}
     {% for row in paginas %}
-        <!-- <article> -->
-        <h2>{{ row.pagina }}</h2>
+            {% if forloop.counter0|divisibleby:"3" %}<div class="row-fluid">{% endif %}
+            <div class="span4">
+              <h3><a href="/pagina/{{ row.idpagina }}">{{ row.pagina|truncatewords:7}}</a></h3>
+              <p>{{ row.descripcion|truncatewords:50 }}</p>
+              <p><a class="btn" href="/pagina/{{ row.idpagina }}">ver m&aacute;s &raquo;</a></p>
+              <!-- <p><cite>{{ row.fecha|date:"" }}</cite></p> -->
+            </div><!--/span-->
+            {% if forloop.last or forloop.counter|divisibleby:"3" %}</div><!--/row-->{% endif %}
+<!--
               {% if row.foto %}
                   {% thumbnail row.foto "190x130" crop="center" as im %}
                   <figure><a href="/pagina/{{ row.idpagina }}"><img alt="Foto - {{ row.pagina }}" title="{{ row.pagina }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a></figure>
                   {% endthumbnail %}
               {% endif %}                 
-        <p>{{ row.descripcion|truncatewords_html:50 }}</p>
-        <p><a href="/pagina/{{ row.idpagina }}">ver m&aacute;s</a></p>
-        <hr/>
-        <!-- </article> -->
+-->
     {% endfor %}
-{% endif %}    
 {% endblock %}

@@ -10,6 +10,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'website.views.home', name='home'),
+    #url(r'^acerca/', PaginaDetailView.as_view(), name='pagina_detail'),
+    url(r'^acerca/', PaginaDetailView.as_view(), {"pk": 1}, name="pagina_detail"),
     url(r'^pagina/(?P<pk>\d+)', PaginaDetailView.as_view() ,name='pagina_detail'),
     url(r'^blogs/(?P<pk>\d+)', BlogDetailView.as_view() ,name='blog_detail'),
     url(r'^blogs', ListView.as_view(model=Blog) ),

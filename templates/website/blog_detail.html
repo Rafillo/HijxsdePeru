@@ -5,10 +5,10 @@
 <!-- <article> -->
 <h1>{{ blog.blog }}</h1>
 <p><div class="fb-like" data-send="false" data-width="450" data-show-faces="false" data-action="recommend"></div></p>
-<cite>{{ blog.fecha }} - {{ blog.autor }}</cite>
+<small>{{ blog.fecha }} - {{ blog.autor }}</small>
 {% if blog.imagen %}
     {% thumbnail blog.imagen "300" crop="center" as im %}
-    <img align="left" alt="Foto - {{ blog.blog }}" title="{{ blog.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    <img class="img-polaroid" style="float:left"  alt="Foto - {{ blog.blog }}" title="{{ blog.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
 {{ blog.texto|render_markup|safe }}

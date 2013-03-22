@@ -5,9 +5,9 @@ from django.views.generic import TemplateView
 from django.views.generic import DetailView
 
 def home(request):
-    paginas = pagina.objects.all()[:5]
-    blogs = Blog.objects.order_by('-fecha')[:6]
-    enlaces = enlace.objects.all()[:3]
+    paginas = pagina.objects.all()[:3]
+    blogs = Blog.objects.order_by('-fecha')[:3]
+    enlaces = enlace.objects.all()[:5]
     tipos_autor = tipo_autor.objects.all()
 
     return render_to_response('home.html',{
