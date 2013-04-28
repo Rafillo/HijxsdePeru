@@ -16,31 +16,3 @@ def home(request):
         'enlaces': enlaces,
         'tipo_autor': tipo_autor,
     })
-
-class PaginaDetailView(DetailView):
-    queryset = pagina.objects.all()
-
-    def get_object(self):
-        object = super(PaginaDetailView, self).get_object()
-        return object
-
-class BlogDetailView(DetailView):
-    queryset = Blog.objects.all()
-
-    def get_object(self):
-        object = super(BlogDetailView, self).get_object()
-        return object
-
-class DocDetailView(DetailView):
-    queryset = doc.objects.all()
-
-    def get_object(self):
-        object = super(DocDetailView, self).get_object()
-        return object
-
-class NoticiaDetailView(DetailView):
-    queryset = noticia.objects.all()
-
-    def get_object(self):
-        object = super(NoticiaDetailView, self).get_object()
-        return object

@@ -8,6 +8,6 @@
     <img align="left" alt="Foto - {{ pagina.pagina }}" title="{{ pagina.pagina }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
-{{ pagina.descripcion|linebreaks }}
+{{ pagina.descripcion|safe }}
 <!-- </article> -->
 {% endblock %}

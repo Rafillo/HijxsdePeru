@@ -24,4 +24,22 @@ div.wrapper {width: 90%; max-width: 810px; margin: 0 auto;}
 	.ie div.wrapper {text-align: left; width: 810px;}
 aside   { float:right; margin-left:0; width: 300px; }
 footer  { clear:both; }
+li a {
+  text-decoration: none;
+}
 ul {list-style-type: square;}
+a[href $='.pdf'] { 
+   padding-right: 18px;
+   background: transparent url(/static/img/pdf_small.png) no-repeat center right;
+}
+h2 a, h2 a:link {
+  font-size:14px;
+  font-weight:bold;
+  color:#000088;
+  padding-bottom:0px;
+  text-decoration: none;
+}
+/*
+ * h2 a:visited { color: #f00; }
+ * h2 a:hover, h2 a:active { color: #00f; }
+ */

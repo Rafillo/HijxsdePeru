@@ -9,7 +9,7 @@
     <img align="left" alt="Foto - {{ doc.doc}}" title="{{ doc.doc }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
-{{ doc.descripcion|linebreaks }}
+{{ doc.descripcion|safe }}
 {% if doc.archivo %}
 <p>
     Descargar el documento: <a href="/media/{{ doc.archivo }}">{{ doc.archivo }}</a>
