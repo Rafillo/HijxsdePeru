@@ -8,10 +8,14 @@ from website.models import Blog, doc, noticia, enlace, galeria, pagina
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^admin/', include(admin.site.urls)),
+
+    #url(r'^markitup/', include('markitup.urls')),
     (r'^tinymce/', include('tinymce.urls')),
+    url(r'^contacto/', include("contact_form.urls", namespace="contact_form")),
     url(r'^$', 'website.views.home', name='home'),
-    #url(r'^acerca/', PaginaDetailView.as_view(), name='pagina_detail'),
-    url(r'^acerca/', DetailView.as_view(), {"pk": 1}, name="pagina_detail"),
+    url(r'^acerca/', DetailView.as_view(model=pagina), {"pk": 1}, name="pagina_detail"),
+
     url(r'^pagina/(?P<pk>\d+)', DetailView.as_view(model=pagina) ,name='pagina_detail'),
     url(r'^blogs/(?P<pk>\d+)', DetailView.as_view(model=Blog) ,name='blog_detail'),
     url(r'^blogs', ListView.as_view(model=Blog) ),
@@ -21,12 +25,6 @@ urlpatterns = patterns('',
     url(r'^noticias', ListView.as_view(model=noticia) ),
     url(r'^enlaces', ListView.as_view(model=enlace) ),
     url(r'^galerias', ListView.as_view(model=galeria) ),
-
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-
-    url(r'^markitup/', include('markitup.urls')),
-
 )
 
 if settings.DEBUG:

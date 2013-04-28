@@ -4,6 +4,7 @@ django-markitup
 django-model-utils
 Markdown
 -e git+https://github.com/aljosa/django-tinymce#egg=django-tinymce
+-e git+https://github.com/javierwilson/django-contact-form#egg=django-contact
 django-filebrowser
 gunicorn
 django-videothumbs

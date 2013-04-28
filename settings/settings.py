@@ -1,10 +1,10 @@
 # Django settings for hijxs project.
 import os
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ["hijosdeperu.org"]
+ALLOWED_HOSTS = ["example.com"]
 
 SITE_ROOT = os.path.abspath(os.path.join( os.path.dirname( os.path.realpath(__file__) ) ,'..' ))
 
@@ -36,7 +36,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ES'
 
 SITE_ID = 1
 
@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'markitup',
     'tinymce',
     'south',
+    'contact_form',
 )
 
 MARKITUP_SET = 'markitup/sets/markdown'
