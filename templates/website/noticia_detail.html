@@ -4,10 +4,13 @@
 <h1>{{ noticia.noticia }}</h1>
 <p><div class="fb-like" data-send="false" data-width="450" data-show-faces="false" data-action="recommend"></div></p>
 <p><cite>{{ noticia.fecha }} - {{ noticia.autor }}</cite></p>
-{% if noticia.imagen %}
-    {% thumbnail noticia.imagen "300" crop="center" as im %}
+{% if noticia.foto %}
+    {% thumbnail noticia.foto "300" crop="center" as im %}
     <img align="left" alt="Foto - {{ noticia.noticia}}" title="{{ noticia.noticia }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
-{{ noticia.texto|linebreaks }}
+{{ noticia.texto|safe }}
+<p>
+Enlace: <a href="{{ noticia.url }}">{{ noticia.url }}</a>
+</p>
 {% endblock %}

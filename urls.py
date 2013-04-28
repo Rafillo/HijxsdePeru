@@ -9,6 +9,7 @@ from website.models import Blog, doc, noticia, enlace, galeria
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^tinymce/', include('tinymce.urls')),
     url(r'^$', 'website.views.home', name='home'),
     #url(r'^acerca/', PaginaDetailView.as_view(), name='pagina_detail'),
     url(r'^acerca/', PaginaDetailView.as_view(), {"pk": 1}, name="pagina_detail"),

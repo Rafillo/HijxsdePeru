@@ -1,17 +1,15 @@
 {% extends "base.html" %}
-{% load markitup_tags %}
 {% load thumbnail %}
 {% block content %}
-<!-- <article> -->
 <h1>{{ blog.blog }}</h1>
 <p><div class="fb-like" data-send="false" data-width="450" data-show-faces="false" data-action="recommend"></div></p>
 <small>{{ blog.fecha }} - {{ blog.autor }}</small>
 {% if blog.imagen %}
     {% thumbnail blog.imagen "300" crop="center" as im %}
-    <img class="img-polaroid" style="float:left"  alt="Foto - {{ blog.blog }}" title="{{ blog.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    <img class="img-polaroid" style="float:left; margin:5px;"  alt="Foto - {{ blog.blog }}" title="{{ blog.blog }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
-{{ blog.texto|render_markup|safe }}
+{{ blog.texto|safe }}
 <p>&nbsp;<p>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
@@ -24,5 +22,4 @@
     })();
 </script>
 <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-<!-- </article> -->
 {% endblock %}

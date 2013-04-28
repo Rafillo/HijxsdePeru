@@ -2,12 +2,13 @@
 
 #import os
 from django.db import models
+from tinymce import models as tinymce_models
 
 class pagina(models.Model):
     idpagina = models.AutoField(primary_key=True, verbose_name="Id")
     pagina = models.CharField(max_length=500, verbose_name="Titulo")
-    foto = models.ImageField(upload_to='pagina', verbose_name="Foto")
-    descripcion = models.TextField(verbose_name="Descripcion")
+    foto = models.ImageField(null=True, blank=True, upload_to='pagina', verbose_name="Foto")
+    descripcion = tinymce_models.HTMLField(verbose_name="Descripcion")
     class Meta:
         db_table = 'pagina'
         verbose_name = 'Paginas'
@@ -44,8 +45,8 @@ class tipo_autor(models.Model):
 class autor(models.Model):
     idautor = models.AutoField(primary_key=True, verbose_name="Id")
     autor = models.CharField(max_length=500, verbose_name="Autor")
-    email = models.EmailField(max_length=150, verbose_name="E-mail")
-    foto = models.ImageField(upload_to='autor', verbose_name="Foto")
+    email = models.EmailField(null=True, blank=True, max_length=150, verbose_name="E-mail")
+    foto = models.ImageField(null=True, blank=True, upload_to='autor', verbose_name="Foto")
     tipo_autor = models.ForeignKey(tipo_autor, db_column="idtipo_autor", verbose_name="TipoAutor")
     class Meta:
         db_table = 'autor'
@@ -59,14 +60,15 @@ class autor(models.Model):
 class Blog(models.Model):
     idblog = models.AutoField(primary_key=True, verbose_name="Id")
     blog = models.CharField(max_length=500, verbose_name="Titulo")
-    autor = models.ForeignKey(autor, db_column="idautor", verbose_name="Autor")
-    tipo_autor = models.ForeignKey(tipo_autor, db_column="idtipo_autor", verbose_name="Tipo Autor")
-    fecha = models.DateField(verbose_name="Fecha")
-    resumen = models.TextField(verbose_name="Resumen")
-    texto = models.TextField(verbose_name="Descripcion")
+    autor = models.ForeignKey(autor, null=True, blank=True, db_column="idautor", verbose_name="Autor")
+    tipo_autor = models.ForeignKey(tipo_autor, null=True, blank=True, db_column="idtipo_autor", verbose_name="Tipo Autor")
+    fecha = models.DateField(null=True, blank=True, verbose_name="Fecha")
+    resumen = tinymce_models.HTMLField(null=True, blank=True, verbose_name="Resumen")
+    texto = tinymce_models.HTMLField(null=True, blank=True, verbose_name="Descripcion")
     imagen = models.ImageField(upload_to='blog',  null=True, blank=True, verbose_name="Imagen 1")
-    tema = models.ForeignKey(tema, db_column="idtema", verbose_name="Tema")
-    portada = models.BooleanField(verbose_name="Portada?")
+    video = models.URLField(null=True, blank=True, verbose_name="Video 1")
+    tema = models.ForeignKey(tema, db_column="idtema", null=True, blank=True, verbose_name="Tema")
+    portada = models.BooleanField(blank=True, verbose_name="Portada?")
     class Meta:
         db_table = 'blog'
         verbose_name = 'Blogs'
@@ -96,23 +98,14 @@ class comentario(models.Model):
 class doc(models.Model):
     iddoc = models.AutoField(primary_key=True, verbose_name="Id")
     doc = models.CharField(max_length=500, verbose_name="Titulo")
-    portada = models.ImageField(upload_to='doc', verbose_name="Imagen")
-    descripcion = models.TextField(verbose_name="Descripcion")
-    archivo = models.FileField(upload_to='doc', verbose_name="Archivo")
+    fecha = models.DateField(null=True, blank=True, verbose_name="Fecha")
+    portada = models.ImageField(null=True, blank=True, upload_to='doc', verbose_name="Imagen")
+    descripcion = tinymce_models.HTMLField(null=True, blank=True, verbose_name="Descripcion")
+    archivo = models.FileField(null=True, blank=True, upload_to='doc', verbose_name="Archivo")
     class Meta:
         db_table = 'doc'
         verbose_name = 'Documentos'
-        ordering = ['-iddoc']
-
-    """
-    def extension(self):
-        name, extension = os.path.splitext(self.archivo.name)
-        if extension == '.pdf':
-            return 'pdf'
-        if extension == '.doc' or extension == '.docx':
-            return 'word'
-        return 'other'
-    """
+        ordering = ['-fecha','-iddoc']
 
     def __unicode__(self):
         return self.doc
@@ -120,10 +113,11 @@ class doc(models.Model):
 
 class noticia(models.Model):
     idnoticia = models.AutoField(primary_key=True, verbose_name="Id")
-    noticia = models.CharField(max_length=500, verbose_name="Titulo")
-    fecha = models.DateField(verbose_name="Fecha")
-    texto = models.TextField(verbose_name="Texto")
-    foto = models.ImageField(upload_to='noticia', verbose_name="Foto")
+    noticia = models.CharField(null=True, blank=True, max_length=500, verbose_name="Titulo")
+    fecha = models.DateField(null=True, blank=True, verbose_name="Fecha")
+    texto = tinymce_models.HTMLField(null=True, blank=True, verbose_name="Texto")
+    url = models.CharField(null=True, blank=True, max_length=1000, verbose_name="URL")
+    foto = models.ImageField(null=True, blank=True, upload_to='noticia', verbose_name="Foto")
     class Meta:
         db_table = 'noticia'
         verbose_name = 'Noticias'
@@ -137,8 +131,8 @@ class enlace(models.Model):
     idenlace = models.AutoField(primary_key=True, verbose_name="Id")
     enlace = models.CharField(max_length=500, verbose_name="Título")
     url = models.URLField(max_length=600, verbose_name="Dirección web")
-    texto = models.TextField(verbose_name="Texto")
-    imagen = models.ImageField(upload_to='enlace', verbose_name="Imagen")
+    texto = models.TextField(null=True, blank=True, verbose_name="Texto")
+    imagen = models.ImageField(null=True, blank=True, upload_to='enlace', verbose_name="Imagen")
     class Meta:
         db_table = 'enlace'
         verbose_name = 'Enlaces'
@@ -151,7 +145,7 @@ class enlace(models.Model):
 class galeria(models.Model):
     idgaleria = models.AutoField(primary_key=True, verbose_name="Id")
     galeria = models.CharField(max_length=500, verbose_name="Titulo")
-    fecha = models.DateField(verbose_name="Fecha")
+    fecha = models.DateField(null=True, blank=True, verbose_name="Fecha")
     class Meta:
         db_table = 'galeria'
         verbose_name = 'Galeria de Fotos'
@@ -164,8 +158,8 @@ class galeria(models.Model):
 class foto(models.Model):
     idfoto = models.AutoField(primary_key=True, verbose_name="Id")
     galeria = models.ForeignKey(galeria, db_column="idgaleria", verbose_name="Galeria")
-    foto = models.CharField(max_length=500, verbose_name="Titulo")
-    imagen = models.ImageField(upload_to='foto', verbose_name="Foto")
+    foto = models.CharField(null=True, blank=True, max_length=500, verbose_name="Titulo")
+    imagen = models.ImageField(null=True, blank=True, upload_to='foto', verbose_name="Foto")
     class Meta:
         db_table = 'foto'
         verbose_name = 'Fotos'
@@ -178,10 +172,10 @@ class foto(models.Model):
 class agenda(models.Model):
     idagenda = models.AutoField(primary_key=True, verbose_name="Id")
     agenda = models.CharField(max_length=500, verbose_name="Titulo")
-    fecha = models.DateField(verbose_name="Fecha")
-    lugar = models.CharField(max_length=120, verbose_name="Lugar")
-    texto = models.TextField(verbose_name="Evento")
-    organiza = models.CharField(max_length=500, verbose_name="Organizado por")
+    fecha = models.DateField(null=True, blank=True, verbose_name="Fecha")
+    lugar = models.CharField(null=True, blank=True, max_length=120, verbose_name="Lugar")
+    texto = models.TextField(null=True, blank=True, verbose_name="Evento")
+    organiza = models.CharField(null=True, blank=True, max_length=500, verbose_name="Organizado por")
     class Meta:
         db_table = 'agenda'
         verbose_name = 'Agenda'

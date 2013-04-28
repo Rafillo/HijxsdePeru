@@ -4,14 +4,12 @@
 {% for blog in object_list %}
     <h2><a href="/blogs/{{ blog.idblog }}">{{ blog.blog }}</a></h2>
     {% if blog.imagen %}
-    <figure>
     {% thumbnail blog.imagen "190x130" crop="center" as im %}
     <img alt="Foto - {{ blog.blog}}" title="{{ blog.blog}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
-    </figure>
     {% endif %}
         <cite>{{ blog.fecha }} - {{ blog.autor }}</cite>
-        <p>{{ blog.texto|truncatewords_html:50 }}</p>
+        <p>{{ blog.texto|safe|truncatewords_html:50 }}</p>
         <a href="/blogs/{{ blog.idblog }}">ver m&aacute;s...</a></p>
     <hr/>
 {% endfor %}

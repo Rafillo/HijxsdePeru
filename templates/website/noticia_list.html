@@ -3,15 +3,15 @@
 {% block content %}
 {% for noticia in object_list %}
     <h2><a href="/noticias/{{ noticia.idnoticia }}">{{ noticia.noticia }}</a></h2>
-    {% if noticia.imagen %}
+    {% if noticia.foto %}
     <figure>
-    {% thumbnail noticia.imagen "190x130" crop="center" as im %}
+    {% thumbnail noticia.foto "190x130" crop="center" as im %}
     <img align="left" alt="Foto - {{ noticia.noticia }}" title="{{ noticia.noticia }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
     </figure>
     {% endif %}
     <cite>{{ noticia.fecha }} - {{ noticia.autor }}</cite>
-    <p>{{ noticia.texto|striptags|truncatewords_html:50 }}</p>
+    <p>{{ noticia.texto|safe|truncatewords_html:50 }}</p>
     <p><a href="/noticias/{{ noticia.idnoticia }}">ver m&aacute;s</a></p>
     <hr>
 {% endfor %}

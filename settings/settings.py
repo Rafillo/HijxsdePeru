@@ -127,6 +127,8 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'website',
     'markitup',
+    'tinymce',
+    'south',
 )
 
 MARKITUP_SET = 'markitup/sets/markdown'
@@ -173,3 +175,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "website.context_processors.sidebar",
 )
+
+#TINYMCE_COMPRESSOR = True
+TINYMCE_DEFAULT_CONFIG = {
+    #'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'theme_advanced_buttons3' : "",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}

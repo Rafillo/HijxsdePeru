@@ -11,7 +11,7 @@
     </figure>
     {% endif %}
     <cite>{{ doc.fecha }} - {{ doc.autor }}</cite>
-    <p>{{ doc.descripcion|striptags|truncatewords_html:50 }}</p>
+    <p>{{ doc.descripcion|safe|truncatewords_html:50 }}</p>
     <p><a href="/media/{{ doc.archivo }}">descargar</a>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <a href="/docs/{{ doc.iddoc }}">ver m&aacute;s...</a></p>

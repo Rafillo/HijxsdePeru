@@ -2,3 +2,9 @@ Django
 sorl-thumbnail
 django-markitup
 django-model-utils
+Markdown
+-e git+https://github.com/aljosa/django-tinymce#egg=django-tinymce
+django-filebrowser
+gunicorn
+django-videothumbs
+South
