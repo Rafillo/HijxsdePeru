@@ -40,3 +40,6 @@ env/
 
 #media
 media/
+
+#static
+static/
