@@ -9,7 +9,7 @@
 <p><cite>{{ doc.fecha }} - {{ doc.autor }}</cite></p>
 {% if doc.portada %}
     {% thumbnail doc.portada "300" crop="center" as im %}
-    <img align="left" alt="Foto - {{ doc.doc}}" title="{{ doc.doc }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    <img align="left" style="float:left; margin:5px;" alt="Foto - {{ doc.doc}}" title="{{ doc.doc }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
 {% endif %}
 {{ doc.descripcion|safe }}

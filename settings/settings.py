@@ -4,12 +4,12 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ["example.org"]
-
 SITE_ROOT = os.path.abspath(os.path.join( os.path.dirname( os.path.realpath(__file__) ) ,'..' ))
 
+ALLOWED_HOSTS = ["example.org"]
+DEFAULT_FROM_EMAIL = 'info@example.org'
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    # ('Your Name', 'your_email@example.org'),
 )
 
 MANAGERS = ADMINS
