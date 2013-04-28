@@ -4,7 +4,7 @@ import os
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ["hijosdeperu.org"]
+ALLOWED_HOSTS = ["www.hijosdeperu.org", "hijosdeperu.org"]
 
 SITE_ROOT = os.path.abspath(os.path.join( os.path.dirname( os.path.realpath(__file__) ) ,'..' ))
 

@@ -1,0 +1,2 @@
+ffmepg
+python-psycopg2
