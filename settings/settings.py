@@ -1,8 +1,10 @@
 # Django settings for hijxs project.
 import os
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+
+ALLOWED_HOSTS = ["hijosdeperu.org"]
 
 SITE_ROOT = os.path.abspath(os.path.join( os.path.dirname( os.path.realpath(__file__) ) ,'..' ))
 
