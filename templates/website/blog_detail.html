@@ -14,6 +14,33 @@
 {% endif %}
 {{ blog.texto|safe }}
 <p>&nbsp;<p>
+<!-- modal-gallery is the modal dialog used for the image gallery -->
+<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>
+    <div class="modal-footer">
+        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Anterior</a>
+        <a class="btn btn-primary modal-next">Siguiente <i class="icon-arrow-right icon-white"></i></a>
+        <!-- <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>-->
+        <!-- <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>-->
+    </div>
+</div>
+
+<div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
+{% for foto in fotos %}
+    {% thumbnail foto.imagen "150" crop="center" as im %}
+    <a data-gallery="gallery" href="/media/{{ foto.imagen }}" title="{{ foto.foto }}"><img class="img-polaroid" style="float:left; margin:5px;" alt="{{ foto.foto }}" title="{{ foto.foto }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
+    {% endthumbnail %}
+{% empty %}
+    <!-- Sorry, no pictures! -->
+{% endfor %}
+</div>
+
+<p>&nbsp;<p>
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'hijxsdeperu';

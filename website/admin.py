@@ -2,17 +2,17 @@ from website.models import *
 from django.contrib import admin
 from markitup.widgets import AdminMarkItUpWidget
 
-admin.site.register(pagina)
-admin.site.register(tema)
-admin.site.register(tipo_autor)
-admin.site.register(autor)
-admin.site.register(comentario)
-admin.site.register(doc)
-admin.site.register(noticia)
-admin.site.register(enlace)
-admin.site.register(galeria)
-admin.site.register(foto)
-admin.site.register(agenda)
+admin.site.register(Pagina)
+admin.site.register(Tema)
+admin.site.register(TipoAutor)
+admin.site.register(Autor)
+admin.site.register(Comentario)
+admin.site.register(Doc)
+admin.site.register(Noticia)
+admin.site.register(Enlace)
+admin.site.register(Galeria)
+admin.site.register(Foto)
+admin.site.register(Agenda)
 admin.site.register(Blog)
 
 #class BlogAdmin(admin.ModelAdmin):

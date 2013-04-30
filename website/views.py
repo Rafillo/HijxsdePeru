@@ -1,7 +1,5 @@
-from models import *
-from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response, redirect
-from django.views.generic import TemplateView
+from models import Blog, Foto, Pagina
+from django.shortcuts import render_to_response
 from django.views.generic import DetailView
 
 def home(request):
@@ -16,3 +14,13 @@ def home(request):
         'enlaces': enlaces,
         'tipo_autor': tipo_autor,
     })
+
+class BlogDetailView(DetailView):
+
+    model = Blog
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogDetailView, self).get_context_data(**kwargs)
+        fotos = Foto.objects.filter(galeria=context['blog'].galeria_id)
+        context['fotos'] = fotos
+        return context
