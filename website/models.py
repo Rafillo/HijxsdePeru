@@ -47,7 +47,7 @@ class Autor(models.Model):
     autor = models.CharField(max_length=500, verbose_name="Autor")
     email = models.EmailField(null=True, blank=True, max_length=150, verbose_name="E-mail")
     foto = models.ImageField(null=True, blank=True, upload_to='autor', verbose_name="Foto")
-    tipoautor = models.ForeignKey(TipoAutor, db_column="idtipo_autor", verbose_name="TipoAutor")
+    tipo_autor = models.ForeignKey(TipoAutor, db_column="idtipo_autor", verbose_name="TipoAutor", null=True, blank=True)
     class Meta:
         db_table = 'autor'
         verbose_name = 'Autor'

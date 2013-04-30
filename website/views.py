@@ -1,12 +1,12 @@
-from models import Blog, Foto, Pagina
+from models import Blog, Foto, Pagina, TipoAutor, Enlace
 from django.shortcuts import render_to_response
 from django.views.generic import DetailView
 
 def home(request):
-    paginas = pagina.objects.all()[:3]
+    paginas = Pagina.objects.all()[:3]
     blogs = Blog.objects.order_by('-fecha')[:3]
-    enlaces = enlace.objects.all()[:5]
-    tipos_autor = tipo_autor.objects.all()
+    enlaces = Enlace.objects.all()[:5]
+    tipo_autor = TipoAutor.objects.all()
 
     return render_to_response('home.html',{
         'paginas': paginas,
