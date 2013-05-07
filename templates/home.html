@@ -22,11 +22,11 @@
     {% for row in noticias %}
             {% if forloop.counter0|divisibleby:"3" %}<div class="row-fluid">{% endif %}
             <div class="span4">
-              <h3><a href="/noticia/{{ row.idnoticia }}">{{ row.noticia|truncatewords:7}}</a></h3>
+              <h3><a href="/noticias/{{ row.idnoticia }}">{{ row.noticia|truncatewords:7}}</a></h3>
               <p>
               {% if row.foto %}
                   {% thumbnail row.foto "133x91" crop="center" as im %}
-                  <a href="/noticia/{{ row.idnoticia }}"><img class="img-polaroid" style="float:left" alt="Foto - {{ row.noticia }}" title="{{ row.noticia }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a>
+                  <a href="/noticias/{{ row.idnoticia }}"><img class="img-polaroid" style="float:left" alt="Foto - {{ row.noticia }}" title="{{ row.noticia }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a>
                   {% endthumbnail %}
               {% endif %}                 
               {{ row.texto|safe|truncatewords_html:50 }}
