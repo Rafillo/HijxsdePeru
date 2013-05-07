@@ -23,17 +23,17 @@
             {% if forloop.counter0|divisibleby:"3" %}<div class="row-fluid">{% endif %}
             <div class="span4">
               <h3><a href="/noticia/{{ row.idnoticia }}">{{ row.noticia|truncatewords:7}}</a></h3>
-              <p>{{ row.descripcion|safe|truncatewords_html:50 }}</p>
+              <p>
+              {% if row.foto %}
+                  {% thumbnail row.foto "190x130" crop="center" as im %}
+                  <a href="/noticia/{{ row.idnoticia }}"><img class="img-polaroid" style="float:left" alt="Foto - {{ row.noticia }}" title="{{ row.noticia }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a>
+                  {% endthumbnail %}
+              {% endif %}                 
+              {{ row.texto|safe|truncatewords_html:50 }}
+              </p>
               <p><a class="btn" href="/noticia/{{ row.idnoticia }}">ver m&aacute;s &raquo;</a></p>
               <!-- <p><cite>{{ row.fecha|date:"" }}</cite></p> -->
             </div><!--/span-->
             {% if forloop.last or forloop.counter|divisibleby:"3" %}</div><!--/row-->{% endif %}
-<!--
-              {% if row.foto %}
-                  {% thumbnail row.foto "190x130" crop="center" as im %}
-                  <figure><a href="/noticia/{{ row.idnoticia }}"><img alt="Foto - {{ row.noticia }}" title="{{ row.noticia }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a></figure>
-                  {% endthumbnail %}
-              {% endif %}                 
--->
     {% endfor %}
 {% endblock %}
