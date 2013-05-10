@@ -1,5 +1,5 @@
-from django.shortcuts import render_to_response
-from django.views.generic import DetailView
+from django.shortcuts import render_to_response, render
+from django.views.generic import DetailView, ListView
 
 from taggit.models import TaggedItem, Tag
 from models import Blog, Foto, Noticia, Enlace
@@ -7,12 +7,10 @@ from models import Blog, Foto, Noticia, Enlace
 def home(request):
     noticias = Noticia.objects.all()[:3]
     blogs = Blog.objects.order_by('-fecha')[:3]
-    enlaces = Enlace.objects.all()[:2]
 
-    return render_to_response('home.html',{
+    return render(request, 'home.html',{
         'noticias': noticias,
         'blogs': blogs,
-        'enlaces': enlaces,
     })
 
 class BlogDetailView(DetailView):
