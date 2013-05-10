@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 
 #import os
+
 from django.db import models
+from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
+
 from tinymce import models as tinymce_models
 
 class Pagina(models.Model):
@@ -63,6 +67,14 @@ class Doc(models.Model):
     portada = models.ImageField(null=True, blank=True, upload_to='doc', verbose_name="Imagen")
     descripcion = tinymce_models.HTMLField(null=True, blank=True, verbose_name="Descripcion")
     archivo = models.FileField(null=True, blank=True, upload_to='doc', verbose_name="Archivo")
+
+    def get_absolute_url(self):
+        return reverse('doc_detail', 
+            kwargs={
+            'pk': self.pk, 
+            'slug': slugify(self.doc)[:60],
+            })
+
     class Meta:
         db_table = 'doc'
         verbose_name = 'Documento'
@@ -79,6 +91,14 @@ class Noticia(models.Model):
     texto = tinymce_models.HTMLField(null=True, blank=True, verbose_name="Texto")
     url = models.CharField(null=True, blank=True, max_length=1000, verbose_name="URL")
     foto = models.ImageField(null=True, blank=True, upload_to='noticia', verbose_name="Foto")
+
+    def get_absolute_url(self):
+        return reverse('noticia_detail', 
+            kwargs={
+            'pk': self.pk, 
+            'slug': slugify(self.noticia)[:60],
+            })
+
     class Meta:
         db_table = 'noticia'
         verbose_name = 'Noticia'
@@ -143,6 +163,20 @@ class Blog(models.Model):
     tema = models.ForeignKey(Tema, db_column="idtema", null=True, blank=True, verbose_name="Tema")
     galeria = models.ForeignKey(Galeria, null=True, blank=True, verbose_name="Galería")
     portada = models.BooleanField(blank=True, verbose_name="Portada?")
+
+    #def save(self, *args, **kwargs):
+    #    if not self.slug:
+    #        self.slug = slugify(self.blog)[:60]
+    #
+    #    super(News, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('blog_detail', 
+            kwargs={
+            'pk': self.pk, 
+            'slug': slugify(self.blog)[:60],
+            })
+
     class Meta:
         db_table = 'blog'
         verbose_name = 'Blog'

@@ -2,7 +2,7 @@
 {% load thumbnail %}
 {% block content %}
 {% for doc in object_list %}
-    <h2><a href="/docs/{{ doc.iddoc }}">{{ doc.doc }}</a></h2>
+    <h2><a href="{{ doc.get_absolute_url }}">{{ doc.doc }}</a></h2>
     {% if doc.portada %}
     <figure>
     {% thumbnail doc.portada "190x130" crop="center" as im %}
@@ -14,7 +14,7 @@
     <p>{{ doc.descripcion|safe|truncatewords_html:50 }}</p>
     <p><a href="/media/{{ doc.archivo }}">descargar</a>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/docs/{{ doc.iddoc }}">ver m&aacute;s...</a></p>
+    <a href="{{ doc.get_absolute_url }}">ver m&aacute;s...</a></p>
     <hr>
 {% endfor %}
 {% endblock %}
