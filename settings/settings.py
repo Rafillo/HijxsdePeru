@@ -132,6 +132,8 @@ INSTALLED_APPS = (
     'tinymce',
     'south',
     'contact_form',
+    'taggit',
+    'taggit_templatetags',
 )
 
 MARKITUP_SET = 'markitup/sets/markdown'

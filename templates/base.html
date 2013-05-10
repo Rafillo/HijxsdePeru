@@ -1,4 +1,5 @@
 {% load markitup_tags %}
+{% load taggit_extras %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -88,8 +89,13 @@
               <li><a href="/noticias">Noticias</a></li>
               <li><a href="/enlaces">Enlaces</a></li>
               <li class="nav-header">Enlaces</li>
-              {% for row in enlaces %}
+              {% for row in side_enlaces %}
                 <li><a href="http://{{ row.url }}">{{ row.enlace }}</a></li>
+              {% endfor %}
+              <li class="nav-header">Etiquetas</li>
+              {% get_tagcloud as tags for 'website' %}
+              {% for tag in tags %}
+                <font size={{tag.weight|floatformat:0}}><a href="{% url 'tag_detail' slug=tag.slug %}">{{tag}}</a></font><br/>
               {% endfor %}
             </ul>
           </div><!--/.well -->

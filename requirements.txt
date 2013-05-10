@@ -8,4 +8,6 @@ Markdown
 django-filebrowser
 gunicorn
 django-videothumbs
+django-taggit
+django-taggit-templatetags
 South

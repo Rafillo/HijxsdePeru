@@ -4,7 +4,8 @@ from django.contrib import admin
 
 from django.views.generic import ListView, DetailView
 from website.models import Blog, Doc, Noticia, Enlace, Galeria, Pagina
-from website.views import BlogDetailView
+from website.views import BlogDetailView, TagDetailView
+from taggit.models import TaggedItem
 
 admin.autodiscover()
 
@@ -16,6 +17,8 @@ urlpatterns = patterns('',
     url(r'^contacto/', include("contact_form.urls", namespace="contact_form")),
     url(r'^$', 'website.views.home', name='home'),
     url(r'^acerca/', DetailView.as_view(model=Pagina), {"pk": 1}, name="pagina_detail"),
+    #url(r'^etiqueta/', ListView.as_view(model=TaggedItem), name="tag_list"),
+    url(r'^etiqueta/(?P<slug>[-\w\d]+)', TagDetailView.as_view(), name="tag_detail"),
 
     #mover esto a website? url(r'^/', include('polls.urls')),
     url(r'^pagina/(?P<pk>\d+)', DetailView.as_view(model=Pagina), name='pagina_detail'),

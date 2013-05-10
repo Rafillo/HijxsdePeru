@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load dumper %} 
+{% load thumbnail %}
+{% block content %}
+ <pre>{{ object_list|rawdump }}</pre> 
+{% for row in object_list %}
+Etiqueta: {{ row }}
+    <h2><a href="{{ row.get_absolute_url }}">{{ row.row }}</a></h2>
+    {% if row.imagen %}
+    {% thumbnail row.imagen "190x130" crop="center" as im %}
+    <img alt="Foto - {{ row.row}}" title="{{ row.row}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+    {% endif %}
+        <cite>{{ row.fecha }} - {{ row.autor }}</cite>
+        <p>{{ row.texto|safe|truncatewords_html:50 }}</p>
+        <a href="{{ row.get_absolute_url }}">ver m&aacute;s...</a></p>
+    <hr/>
+{% endfor %}
+{% endblock %}

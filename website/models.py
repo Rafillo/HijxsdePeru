@@ -6,6 +6,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
+from taggit.managers import TaggableManager
 from tinymce import models as tinymce_models
 
 class Pagina(models.Model):
@@ -67,6 +68,7 @@ class Doc(models.Model):
     portada = models.ImageField(null=True, blank=True, upload_to='doc', verbose_name="Imagen")
     descripcion = tinymce_models.HTMLField(null=True, blank=True, verbose_name="Descripcion")
     archivo = models.FileField(null=True, blank=True, upload_to='doc', verbose_name="Archivo")
+    tags = TaggableManager(blank=True)
 
     def get_absolute_url(self):
         return reverse('doc_detail', 
@@ -91,6 +93,7 @@ class Noticia(models.Model):
     texto = tinymce_models.HTMLField(null=True, blank=True, verbose_name="Texto")
     url = models.CharField(null=True, blank=True, max_length=1000, verbose_name="URL")
     foto = models.ImageField(null=True, blank=True, upload_to='noticia', verbose_name="Foto")
+    tags = TaggableManager(blank=True)
 
     def get_absolute_url(self):
         return reverse('noticia_detail', 
@@ -163,6 +166,7 @@ class Blog(models.Model):
     tema = models.ForeignKey(Tema, db_column="idtema", null=True, blank=True, verbose_name="Tema")
     galeria = models.ForeignKey(Galeria, null=True, blank=True, verbose_name="Galería")
     portada = models.BooleanField(blank=True, verbose_name="Portada?")
+    tags = TaggableManager(blank=True)
 
     #def save(self, *args, **kwargs):
     #    if not self.slug:
