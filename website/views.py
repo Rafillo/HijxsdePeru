@@ -1,8 +1,13 @@
 from django.shortcuts import render_to_response, render
 from django.views.generic import DetailView, ListView
+from django.http import HttpResponseRedirect
+from django import forms
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 
 from taggit.models import TaggedItem, Tag
 from models import Blog, Foto, Noticia, Enlace
+from settings import CARTA_TO, CARTA_FROM
 
 def home(request):
     noticias = Noticia.objects.all()[:3]
@@ -33,3 +38,36 @@ class TagDetailView(DetailView):
         blogs = Blog.objects.filter(tags__name__in=[context['tag'].name])
         context['blogs'] = blogs
         return context
+
+def Carta(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST, request.FILES)
+        if form.is_valid():
+            subject = "Asunto: " + form.cleaned_data['asunto']
+            message = "Mensaje: " + form.cleaned_data['mensaje']
+            sender = "Remitente: " + form.cleaned_data['nombre_remitente'] + " " + form.cleaned_data['correo_remitente']
+            cc = form.cleaned_data['cc']
+            if cc:
+                recipients.append(sender_email)
+            body = sender + "\n" + subject + "\n" + message + "\n" + sender + "\n"
+            email = EmailMessage('CARTA Hijxs', body, CARTA_FROM, CARTA_TO)
+            if request.FILES:
+                email.attach(request.FILES['archivo'].name, request.FILES['archivo'].read())
+            email.send()
+            return HttpResponseRedirect('/enviada')
+    else:
+        form = ContactForm()
+
+    return render(request, 'website/carta.html', {
+        'form': form,
+    })
+
+
+class ContactForm(forms.Form):
+    nombre_destinatario = forms.CharField()
+    asunto = forms.CharField(max_length=100)
+    mensaje = forms.CharField(widget=forms.Textarea(attrs={'cols':'80', 'style':'width: 486px; height: 174px;'}))
+    nombre_remitente = forms.CharField()
+    archivo = forms.FileField(label="Carta escaneada (opcional)", required=False)
+    correo_remitente = forms.EmailField(label="Correo del remitente (opcional)", required=False)
+    cc = forms.BooleanField(label="Recibir copia del mensaje", required=False)

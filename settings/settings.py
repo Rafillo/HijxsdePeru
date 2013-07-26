@@ -189,3 +189,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
 }
+
+CARTA_TO = ['bob@example.com']
+CARTA_FROM = 'alice@example.org'
