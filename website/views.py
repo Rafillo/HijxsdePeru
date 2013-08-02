@@ -37,6 +37,8 @@ class TagDetailView(DetailView):
         #blogs = Blog.objects.filter(tags__name__in=['Arte'])
         blogs = Blog.objects.filter(tags__name__in=[context['tag'].name])
         context['blogs'] = blogs
+        noticias = Noticia.objects.filter(tags__name__in=[context['tag'].name])
+        context['noticias'] = noticias
         return context
 
 def Carta(request):
