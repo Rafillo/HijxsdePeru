@@ -71,9 +71,9 @@ class Doc(models.Model):
     tags = TaggableManager(blank=True)
 
     def get_absolute_url(self):
-        return reverse('doc_detail', 
+        return reverse('doc_detail',
             kwargs={
-            'pk': self.pk, 
+            'pk': self.pk,
             'slug': slugify(self.doc)[:60],
             })
 
@@ -96,9 +96,9 @@ class Noticia(models.Model):
     tags = TaggableManager(blank=True)
 
     def get_absolute_url(self):
-        return reverse('noticia_detail', 
+        return reverse('noticia_detail',
             kwargs={
-            'pk': self.pk, 
+            'pk': self.pk,
             'slug': slugify(self.noticia)[:60],
             })
 
@@ -175,9 +175,9 @@ class Blog(models.Model):
     #    super(News, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('blog_detail', 
+        return reverse('blog_detail',
             kwargs={
-            'pk': self.pk, 
+            'pk': self.pk,
             'slug': slugify(self.blog)[:60],
             })
 
@@ -221,4 +221,14 @@ class Comentario(models.Model):
     def __unicode__(self):
         return self.comentario
 
+
+class Presx(models.Model):
+    nombre = models.CharField(max_length=500)
+    foto = models.ImageField(null=True, blank=True, upload_to='autor', verbose_name="Foto")
+    bio = models.TextField()
+    class Meta:
+        ordering = ['nombre']
+
+    def __unicode__(self):
+        return self.nombre
 

@@ -6,8 +6,10 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
 from taggit.models import TaggedItem, Tag
-from models import Blog, Foto, Noticia, Enlace
+
+from models import Blog, Foto, Noticia, Enlace, Presx
 from settings import CARTA_TO, CARTA_FROM
+from forms import ContactForm
 
 def home(request):
     noticias = Noticia.objects.all()[:3]
@@ -63,13 +65,3 @@ def Carta(request):
     return render(request, 'website/carta.html', {
         'form': form,
     })
-
-
-class ContactForm(forms.Form):
-    nombre_destinatario = forms.CharField()
-    asunto = forms.CharField(max_length=100)
-    mensaje = forms.CharField(widget=forms.Textarea(attrs={'cols':'80', 'style':'width: 486px; height: 174px;'}))
-    nombre_remitente = forms.CharField()
-    archivo = forms.FileField(label="Carta escaneada (opcional)", required=False)
-    correo_remitente = forms.EmailField(label="Correo del remitente (opcional)", required=False)
-    cc = forms.BooleanField(label="Recibir copia del mensaje", required=False)

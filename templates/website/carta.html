@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Carta a presxs</h2>
+<p><a href="">Una pequeña reseña de cada unx de lxs presxs</a>..</p>
 <form action="/carta/" method="post" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />

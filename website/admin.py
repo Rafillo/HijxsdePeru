@@ -14,6 +14,7 @@ admin.site.register(Galeria)
 admin.site.register(Foto)
 admin.site.register(Agenda)
 admin.site.register(Blog)
+admin.site.register(Presx)
 
 #class BlogAdmin(admin.ModelAdmin):
 #    formfield_overrides = {models.TextField: {'widget': AdminMarkItUpWidget}}
