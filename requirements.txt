@@ -11,3 +11,4 @@ django-videothumbs
 django-taggit
 django-taggit-templatetags
 South
+django-simple-captcha

@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 from django.views.generic import ListView, DetailView
 from django.views.generic import TemplateView
 
-from website.models import Blog, Doc, Noticia, Enlace, Galeria, Pagina
+from website.models import Blog, Doc, Noticia, Enlace, Galeria, Pagina, Perfil
 from website.views import BlogDetailView, TagDetailView, Carta
 from website import views
 
@@ -20,5 +20,6 @@ urlpatterns = patterns('',
     url(r'^enlaces', ListView.as_view(model=Enlace) ),
     url(r'^galerias', ListView.as_view(model=Galeria) ),
     url(r'^carta', Carta, name='carta' ),
+    url(r'^perfil', ListView.as_view(model=Perfil), name='perfil' ),
     url(r'^enviada', TemplateView.as_view(template_name='website/enviada.html')),
 )

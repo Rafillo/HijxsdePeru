@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'markitup',
     'tinymce',
     'south',
+    'captcha',
     'contact_form',
     'taggit',
     'taggit_templatetags',

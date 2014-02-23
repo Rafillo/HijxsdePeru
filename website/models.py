@@ -222,13 +222,18 @@ class Comentario(models.Model):
         return self.comentario
 
 
-class Presx(models.Model):
+class Perfil(models.Model):
     nombre = models.CharField(max_length=500)
+    slug = models.SlugField(max_length=100, unique=True)
     foto = models.ImageField(null=True, blank=True, upload_to='autor', verbose_name="Foto")
     bio = models.TextField()
+
     class Meta:
         ordering = ['nombre']
 
     def __unicode__(self):
         return self.nombre
 
+    def save(self):
+        self.slug = slugify(self.nombre)
+        super(Perfil, self).save()

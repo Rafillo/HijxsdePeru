@@ -13,7 +13,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     #url(r'^markitup/', include('markitup.urls')),
-    (r'^tinymce/', include('tinymce.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^captcha/', include('captcha.urls')),
+
     url(r'^contacto/', include("contact_form.urls", namespace="contact_form")),
     url(r'^$', 'website.views.home', name='home'),
     url(r'^acerca/', DetailView.as_view(model=Pagina), {"pk": 1}, name="pagina_detail"),

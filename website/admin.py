@@ -14,7 +14,10 @@ admin.site.register(Galeria)
 admin.site.register(Foto)
 admin.site.register(Agenda)
 admin.site.register(Blog)
-admin.site.register(Presx)
+
+class PerfilAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("nombre",)}
+admin.site.register(Perfil, PerfilAdmin)
 
 #class BlogAdmin(admin.ModelAdmin):
 #    formfield_overrides = {models.TextField: {'widget': AdminMarkItUpWidget}}
