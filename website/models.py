@@ -87,7 +87,6 @@ class Doc(models.Model):
 
 
 class Noticia(models.Model):
-    idnoticia = models.AutoField(primary_key=True, verbose_name="Id")
     noticia = models.CharField(null=True, blank=True, max_length=500, verbose_name="Titulo")
     fecha = models.DateField(null=True, blank=True, verbose_name="Fecha")
     texto = tinymce_models.HTMLField(null=True, blank=True, verbose_name="Texto")
@@ -154,7 +153,6 @@ class Foto(models.Model):
 
 
 class Blog(models.Model):
-    idblog = models.AutoField(primary_key=True, verbose_name="Id")
     blog = models.CharField(max_length=500, verbose_name="Titulo")
     autor = models.ForeignKey(Autor, null=True, blank=True, db_column="idautor", verbose_name="Autor")
     tipoautor = models.ForeignKey(TipoAutor, null=True, blank=True, db_column="idtipo_autor", verbose_name="Tipo Autor")

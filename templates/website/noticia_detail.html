@@ -14,6 +14,6 @@
 {% endif %}
 {{ noticia.texto|safe }}
 <p>
-Enlace: <a href="{{ noticia.url }}">{{ noticia.url }}</a>
+Enlace: <a target="_blank" href="{{ noticia.url }}">{{ noticia.url }}</a>
 </p>
 {% endblock %}
