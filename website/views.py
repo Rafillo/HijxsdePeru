@@ -7,7 +7,7 @@ from django.core.mail import EmailMessage
 
 from taggit.models import TaggedItem, Tag
 
-from models import Blog, Foto, Noticia, Enlace, Perfil
+from models import Blog, Foto, Noticia, Enlace, Perfil, Pagina
 from settings import CARTA_TO, CARTA_FROM
 from forms import CartaForm
 
@@ -44,6 +44,7 @@ class TagDetailView(DetailView):
         return context
 
 def Carta(request):
+    carta = Pagina.objects.get(pk=17) # Cartas
     if request.method == 'POST':
         form = CartaForm(request.POST, request.FILES)
         if form.is_valid():
@@ -64,4 +65,5 @@ def Carta(request):
 
     return render(request, 'website/carta.html', {
         'form': form,
+        'carta': carta,
     })
