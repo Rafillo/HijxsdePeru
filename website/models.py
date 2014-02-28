@@ -224,7 +224,7 @@ class Perfil(models.Model):
     nombre = models.CharField(max_length=500)
     slug = models.SlugField(max_length=100, unique=True)
     foto = models.ImageField(null=True, blank=True, upload_to='autor', verbose_name="Foto")
-    bio = models.TextField()
+    bio = tinymce_models.HTMLField(verbose_name="Descripción")
 
     class Meta:
         ordering = ['nombre']
