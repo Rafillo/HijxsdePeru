@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'contact_form',
     'taggit',
     'taggit_templatetags',
+    'embed_video',
 )
 
 MARKITUP_SET = 'markitup/sets/markdown'
@@ -178,6 +179,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.static",
+    "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     "website.context_processors.sidebar",
 )
@@ -193,3 +195,8 @@ TINYMCE_DEFAULT_CONFIG = {
 
 CARTA_TO = ['bob@example.com']
 CARTA_FROM = 'alice@example.org'
+
+SOUTH_MIGRATION_MODULES = {
+    'taggit': 'taggit.south_migrations',
+}
+

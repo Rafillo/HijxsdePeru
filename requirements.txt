@@ -7,8 +7,9 @@ Markdown
 -e git+https://github.com/javierwilson/django-contact-form#egg=django-contact
 django-filebrowser
 gunicorn
-django-videothumbs
+#django-videothumbs
 django-taggit
 django-taggit-templatetags
 South
 django-simple-captcha
+django-embed-video

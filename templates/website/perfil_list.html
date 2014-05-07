@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load thumbnail %}
+{% load embed_video_tags %}
 {% block content %}
 {% for perfil in object_list %}
     <h2>{{ perfil.nombre }}</h2>
@@ -9,6 +10,9 @@
     {% endthumbnail %}
     {% endif %}
         <p>{{ perfil.bio|safe }}</p>
+        {% with perfil_video=perfil.video|default_if_none:"" %}
+            {% video perfil_video 'small' %}
+        {% endwith %}
     <hr/>
 {% endfor %}
 <p><a href="{% url "carta" %}">Escribir o enviar cartas...</a></p>

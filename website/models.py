@@ -8,6 +8,7 @@ from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
 from tinymce import models as tinymce_models
+from embed_video.fields import EmbedVideoField
 
 class Pagina(models.Model):
     idpagina = models.AutoField(primary_key=True, verbose_name="Id")
@@ -225,6 +226,7 @@ class Perfil(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     foto = models.ImageField(null=True, blank=True, upload_to='autor', verbose_name="Foto")
     bio = tinymce_models.HTMLField(verbose_name="Descripción")
+    video = EmbedVideoField(null=True, blank=True, verbose_name="Video")
 
     class Meta:
         ordering = ['nombre']
@@ -232,6 +234,6 @@ class Perfil(models.Model):
     def __unicode__(self):
         return self.nombre
 
-    def save(self):
-        self.slug = slugify(self.nombre)
-        super(Perfil, self).save()
+    #def save(self):
+    #    self.slug = slugify(self.nombre)
+    #    super(Perfil, self).save()
