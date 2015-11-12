@@ -43,3 +43,6 @@ media/
 
 #static
 /static/
+
+#git
+git-shell-commands/
