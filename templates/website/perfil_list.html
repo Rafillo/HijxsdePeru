@@ -4,8 +4,8 @@
 {% block content %}
 {% for perfil in object_list %}
     <h2>{{ perfil.nombre }}</h2>
-    {% if perfil.imagen %}
-    {% thumbnail perfil.imagen "190x130" crop="center" as im %}
+    {% if perfil.foto %}
+    {% thumbnail perfil.foto "190x130" crop="center" as im %}
     <img alt="Foto - {{ perfil.perfil}}" title="{{ perfil.perfil}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
     {% endif %}

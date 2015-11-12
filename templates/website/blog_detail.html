@@ -3,9 +3,10 @@
 {% load thumbnail %}
 {% block content %}
 <h1>{{ blog.blog }}</h1>
-<p><a href="https://twitter.com/share" class="twitter-share-button" data-via="HijxsdePeru" data-lang="es">Twittear</a>
+<div><a href="https://twitter.com/share" class="twitter-share-button" data-via="HijxsdePeru" data-lang="es">Twittear</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<div class="fb-like" data-send="false" data-width="450" data-show-faces="false" data-action="recommend"></div></p>
+<br/>
+<div class="fb-like" data-layout="standard" data-action="recommend" data-show-faces="false" data-share="true"></div></div>
 <small>{{ blog.fecha }} - {{ blog.autor }}</small>
 {% if blog.imagen %}
     {% thumbnail blog.imagen "300" crop="center" as im %}
@@ -15,7 +16,7 @@
 {{ blog.texto|safe }}
 <p>&nbsp;<p>
 <div class="clearfix"></div>
-_<!-- modal-gallery is the modal dialog used for the image gallery -->
+<!-- modal-gallery is the modal dialog used for the image gallery -->
 <div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
     <div class="modal-header">
         <a class="close" data-dismiss="modal">&times;</a>

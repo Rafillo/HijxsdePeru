@@ -196,7 +196,7 @@ TINYMCE_DEFAULT_CONFIG = {
 CARTA_TO = ['bob@example.com']
 CARTA_FROM = 'alice@example.org'
 
-SOUTH_MIGRATION_MODULES = {
-    'taggit': 'taggit.south_migrations',
-}
+#SOUTH_MIGRATION_MODULES = {
+#    'taggit': 'taggit.south_migrations',
+#}
 
